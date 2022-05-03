@@ -1,1 +1,66 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~ngx-toastr/toastr.css";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*:focus {
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+html,
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  color: white !important;
+  background-color: #111827;
+  padding-top: 50px;
+  max-width: 100%;
+  min-width: 352px !important;
+}
+
+.toast-container .ngx-toastr {
+  width: 350px;
+}
+
+@media screen and (max-width: 991px) {
+  .navbar-dark .navbar-toggler {
+    color: transparent;
+  }
+  .navbar-toggler:focus {
+    border: 0;
+  }
+  .navbar-nav {
+    padding: 10px;
+    position: relative;
+  }
+  .closenav {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: white;
+    z-index: 1000;
+    cursor: pointer;
+  }
+  .navbar-collapse {
+    background-color: #111827;
+    position: absolute;
+    top: 0;
+    width: 95%;
+    height: 100vh;
+    z-index: 1;
+    transition: all 0.4s ease;
+    display: block;
+  }
+  .navbar-collapse.collapsing {
+    left: -96%;
+    transition: height 0s ease;
+  }
+  .navbar-collapse.show {
+    left: 0;
+    transition: left 300ms ease-in-out;
+  }
+  .navbar-toggler.collapsed ~ .navbar-collapse {
+    transition: left 500ms ease-in-out;
+  }
+}

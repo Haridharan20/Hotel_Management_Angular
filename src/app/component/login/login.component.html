@@ -1,0 +1,111 @@
+<div class="container register-container">
+  <div class="register_form mx-auto">
+    <h1 class="text-center mx-auto">Login</h1>
+    <div class="row mt-5 mb-3 social mx-auto">
+      <div class="google mb-4">
+        <button class="btn text-white border w-100">
+          <span class="d-flex justify-content-around">
+            <img src="assets/icons8-google-48.png" alt="google" width="25px" />
+            <span class="w-75"> Continue with Google </span>
+          </span>
+        </button>
+      </div>
+      <div class="Facebook mb-4">
+        <button class="btn text-white border w-100">
+          <span class="d-flex justify-content-around">
+            <img
+              src="assets/icons8-facebook-48.png"
+              alt="facebook"
+              width="25px"
+            />
+            <span class="w-75"> Continue with Facebook </span>
+          </span>
+        </button>
+      </div>
+    </div>
+    <div class="row register mx-auto">
+      <div class="break">
+        <div class="line bg-secondary mb-4"></div>
+        <small class="center">OR</small>
+      </div>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group mb-4">
+          <label for="Email" class="mb-2">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="form-control bg-transparent text-white"
+            formControlName="username"
+            [ngClass]="{
+              'is-invalid':
+                loginForm.get('username')?.invalid &&
+                loginForm.get('username')?.touched
+            }"
+          />
+          <div
+            *ngIf="
+              loginForm.get('username')?.invalid &&
+              loginForm.get('username')?.touched
+            "
+          >
+            <small
+              *ngIf="loginForm.get('username')?.hasError('pattern')"
+              class="text-danger"
+            >
+              Enter valid username
+            </small>
+            <small
+              *ngIf="loginForm.get('username')?.hasError('required')"
+              class="text-danger"
+            >
+              Enter username
+            </small>
+          </div>
+        </div>
+        <div class="form-group mb-4">
+          <div class="d-flex justify-content-between">
+            <label for="Password" class="mb-2">Password</label>
+            <a href="#" class="text-white mb-2">Forget Password?</a>
+          </div>
+          <input
+            type="password"
+            name="password"
+            id="Password"
+            class="form-control"
+            formControlName="password"
+            [ngClass]="{
+              'is-invalid':
+                loginForm.get('password')?.invalid &&
+                loginForm.get('password')?.touched
+            }"
+          />
+          <div
+            *ngIf="
+              loginForm.get('password')?.invalid &&
+              loginForm.get('password')?.touched
+            "
+          >
+            <small
+              *ngIf="loginForm.get('password')?.hasError('required')"
+              class="text-danger"
+              >Enter Password
+            </small>
+            <small
+              *ngIf="loginForm.get('password')?.hasError('minlength')"
+              class="text-danger"
+              >Length should be minimum 8
+            </small>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 signupbtn py-2 mb-4">
+          Continue
+        </button>
+        <p class="text-center text-secondary">
+          New user?
+          <a routerLink="/register"> Create an account </a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

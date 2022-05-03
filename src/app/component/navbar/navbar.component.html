@@ -1,0 +1,104 @@
+<nav class="navbar navbar-expand-lg navbar-dark px-3 fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">HD {{ name }}</a>
+    <div class="d-flex justify-content-end profile">
+      <div class="dropdown d-lg-none me-4">
+        <a
+          class="nav-link bg-light text-dark p-0 admin text-center"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-bs-toggle="dropdown"
+        >
+          <span>
+            <i class="fa fa-solid fa-user fa-2x text-white"></i>
+          </span>
+        </a>
+        <ul
+          class="dropdown-menu dropdown-menu-end mt-2 p-2 user_dropdown"
+          aria-labelledby="navbarDropdown"
+        >
+          <li><a class="dropdown-item" routerLink="/login">Login</a></li>
+          <li><a class="dropdown-item" routerLink="/register">Signup</a></li>
+          <li><hr class="dropdown-divider" /></li>
+          <li>
+            <a class="dropdown-item" routerLink="/help">Help</a>
+          </li>
+        </ul>
+      </div>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarContent"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <span
+        class="closenav d-lg-none"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarContent"
+      >
+        <i class="fa fa-solid fa-times text-light"></i>
+      </span>
+      <ul class="navbar-nav align-items-lg-center ms-auto mb-2 mb-lg-0">
+        <li class="nav-item me-2">
+          <a routerLink="/" class="nav-link d-lg-none">HD</a>
+        </li>
+        <p class="nav-link d-lg-none">
+          Discover the most outstanding articles on all topics of life
+        </p>
+        <ul class="list-unstyled d-flex justify-content-between d-lg-none w-25">
+          <li class="me-1">
+            <i class="fa fa-solid fa-facebook"></i>
+          </li>
+          <li>
+            <i class="fa fa-solid fa-twitter"></i>
+          </li>
+          <li>
+            <i class="fa fa-solid fa-google"></i>
+          </li>
+          <li>
+            <i class="fa fa-solid fa-youtube"></i>
+          </li>
+        </ul>
+        <hr />
+        <li class="nav-item me-2">
+          <a class="nav-link" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item me-2">
+          <a class="nav-link" routerLink="/about">About</a>
+        </li>
+        <li class="nav-item me-2">
+          <a class="nav-link" routerLink="/contact">Contact us </a>
+        </li>
+        <li class="nav-item dropdown d-none d-lg-block">
+          <a
+            class="nav-link bg-light text-dark admin p-0 text-center"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+          >
+            <span>
+              <i class="fa fa-solid fa-user fa-2x text-white"></i>
+            </span>
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end user_dropdown"
+            aria-labelledby="navbarDropdown"
+          >
+            <li><a class="dropdown-item" routerLink="/login">Login</a></li>
+            <li><a class="dropdown-item" routerLink="/register">Signup</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" routerLink="/help">Help</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

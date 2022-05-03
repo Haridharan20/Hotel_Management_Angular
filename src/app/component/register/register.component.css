@@ -1,0 +1,46 @@
+.register-container {
+  margin-top: 80px;
+}
+.form-control {
+  background-color: #111827 !important;
+}
+input {
+  background-color: #111827 !important;
+  border-color: rgb(128, 137, 144) !important;
+  border-radius: 10px !important;
+  color: white !important;
+}
+
+.line {
+  width: 100%;
+  height: 1.5px;
+  background-color: red;
+}
+.break {
+  position: relative;
+}
+.center {
+  top: -10px;
+  position: absolute;
+  left: 46%;
+  background-color: #111827;
+  width: 50px;
+  height: 20px;
+  text-align: center;
+}
+.register_form {
+  width: 500px;
+}
+.social button {
+  border: 0 !important;
+  border-radius: 10px !important;
+  background-color: #1f2937 !important;
+  font-size: 14px;
+}
+.signupbtn {
+  border-radius: 25px;
+}
+
+a {
+  text-decoration: none;
+}

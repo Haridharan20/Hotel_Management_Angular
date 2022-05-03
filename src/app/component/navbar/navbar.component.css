@@ -1,0 +1,34 @@
+p {
+  font-size: 20px;
+}
+.admin {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  padding: 10px !important;
+}
+nav {
+  max-width: 100%;
+  min-width: 352px;
+}
+.profile {
+  width: 35%;
+}
+.user_dropdown {
+  border-radius: 20px;
+  background-color: #374151;
+}
+.admin {
+  background-color: #374151 !important;
+}
+a {
+  color: white !important;
+}
+nav {
+  background-color: transparent;
+  backdrop-filter: blur(4px);
+}
+.dropdown-item:hover {
+  background-color: #2a3441;
+  border-radius: 25px;
+}
