@@ -8,14 +8,14 @@ import {
 } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { LoginService } from '../services/login.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuardGuard implements CanActivate {
   constructor(
-    private authService: LoginService,
+    private authService: AuthService,
     private router: Router,
     private toastr: ToastrService
   ) {}

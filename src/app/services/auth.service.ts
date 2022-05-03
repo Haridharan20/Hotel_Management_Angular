@@ -6,14 +6,30 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService {
+export class AuthService {
   authToken: any;
   user: any;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
+
+  userRegister(
+    username: string,
+    email: string,
+    password: string,
+    phonenumber: string
+  ): Observable<any> {
+    return this.http.post('http://localhost:8000/user/register', {
+      username,
+      email,
+      password,
+      phonenumber,
+    });
+  }
+  //Login
   userLogin(username: string, password: string): Observable<any> {
     return this.http.post('http://localhost:8000/user/login', {
       username,
@@ -22,14 +38,12 @@ export class LoginService {
   }
 
   getProfile() {
-    console.log(this.user);
-    console.log('called');
     this.getToken();
-    console.log('this', this.authToken);
+    // console.log('this', this.authToken);
     const headers = new HttpHeaders({
       Authorization: this.authToken,
     });
-    console.log(headers);
+    // console.log(headers);
     return this.http.get('http://localhost:8000/user/profile', {
       headers,
     });

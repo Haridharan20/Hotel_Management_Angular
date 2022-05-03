@@ -94,7 +94,9 @@
             aria-labelledby="navbarDropdown"
           >
             <li *ngIf="!service.loggedIn()" class="text-white">
-              <a class="dropdown-item" href="#">{{ userName }}</a>
+              <a class="dropdown-item" href="#">{{
+                service.user || userName
+              }}</a>
             </li>
             <li *ngIf="service.loggedIn()">
               <a class="dropdown-item" routerLink="/login">Login</a>

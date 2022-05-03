@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { RegisterService } from 'src/app/services/register.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   phonePattern = '(^[7-9])(\\d{9})$';
   constructor(
     private form: FormBuilder,
-    private userService: RegisterService,
+    private userService: AuthService,
     private toastr: ToastrService,
     private router: Router
   ) {}
@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
       [
         Validators.required,
         Validators.minLength(10),
-        Validators.pattern(this.phonePattern),
+        // Validators.pattern(this.phonePattern),
       ],
     ],
     password: [

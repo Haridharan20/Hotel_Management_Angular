@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { LoginService } from 'src/app/services/login.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     '^([a-z0-9\\.\\-]+)@([a-zA-z]+)(\\.[a-zA-z]{2,4})(\\.[a-zA-z]{2,4})?$';
   constructor(
     private form: FormBuilder,
-    private userService: LoginService,
+    private userService: AuthService,
     private toastr: ToastrService,
     private router: Router
   ) {}
@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   });
   onSubmit() {
     const { username, password } = this.loginForm.value;
-    console.log(this.loginForm.value);
     this.userService.userLogin(username, password).subscribe({
       next: (result: any) => {
         console.log(result);

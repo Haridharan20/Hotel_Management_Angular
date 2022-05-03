@@ -11,8 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './component/profile/profile.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuardGuard } from './Auth/auth-guard.guard';
-import { LoginService } from './services/login.service';
-import { RegisterService } from './services/register.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,7 @@ import { RegisterService } from './services/register.service';
       closeButton: true,
     }),
   ],
-  providers: [AuthGuardGuard, LoginService, RegisterService],
+  providers: [AuthGuardGuard, AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

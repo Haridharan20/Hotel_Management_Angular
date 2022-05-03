@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/services/login.service';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,8 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  userName!: string;
-  constructor(public service: LoginService) {}
-
+  userName!: any;
+  constructor(public service: AuthService, private toastr: ToastrService) {}
   ngOnInit(): void {
     if (!this.service.loggedIn()) {
       this.userName = localStorage.getItem('user') || '';
@@ -18,5 +18,11 @@ export class NavbarComponent implements OnInit {
 
   onLogout() {
     this.service.logout();
+    this.userName = null;
+    this.toastr.success('Logout successfully', '', {
+      timeOut: 2000,
+      progressBar: true,
+      progressAnimation: 'decreasing',
+    });
   }
 }

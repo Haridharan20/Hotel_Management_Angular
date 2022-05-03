@@ -1,6 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/services/login.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +9,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class ProfileComponent implements OnInit {
   Username!: string;
-  constructor(private userService: LoginService) {}
+  constructor(private userService: AuthService) {}
 
   ngOnInit(): void {
     this.userService.getProfile().subscribe({
