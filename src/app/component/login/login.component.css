@@ -1,9 +1,9 @@
-.register-container {
-  margin-top: 100px;
+.login-container {
+  margin-top: 50px;
 }
 input {
   background-color: #111827 !important;
-  border-color: rgb(128, 137, 144) !important;
+  border-color: rgb(128, 137, 144);
   border-radius: 10px !important;
   color: white !important;
 }

@@ -1,12 +1,9 @@
-.register-container {
-  margin-top: 80px;
-}
 .form-control {
   background-color: #111827 !important;
 }
 input {
   background-color: #111827 !important;
-  border-color: rgb(128, 137, 144) !important;
+  border-color: rgb(128, 137, 144);
   border-radius: 10px !important;
   color: white !important;
 }

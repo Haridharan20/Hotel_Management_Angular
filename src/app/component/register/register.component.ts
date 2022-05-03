@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
             progressBar: true,
             progressAnimation: 'decreasing',
           });
-          this.router.navigate(['/']);
+          this.router.navigate(['/login']);
         },
         error: (err) => {
           console.log(err.error.msg);

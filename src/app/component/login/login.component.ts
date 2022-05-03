@@ -31,12 +31,11 @@ export class LoginComponent implements OnInit {
   });
   onSubmit() {
     const { username, password } = this.loginForm.value;
+    console.log(this.loginForm.value);
     this.userService.userLogin(username, password).subscribe({
       next: (result: any) => {
-        console.log(result.msg, result.data);
-        // this.userService.name = result.data.username;
-        this.userService.setSessionName(result.data.username);
-        localStorage.setItem('name', 'Hari');
+        console.log(result);
+        this.userService.storeUserData(result.token, result.data.name);
         this.toastr.success(result.msg, '', {
           timeOut: 2000,
           progressBar: true,

@@ -8,19 +8,45 @@
   outline: 0 !important;
   box-shadow: none !important;
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0 30px #111827 inset !important;
+  box-shadow: 0 0 0 30px #111827 inset !important;
+  color: white;
+}
+
+input:focus {
+  border-color: rgb(128, 137, 144) !important;
+}
+
 html,
 body {
   font-family: "Poppins", sans-serif;
   font-size: 16px;
   color: white !important;
   background-color: #111827;
-  padding-top: 50px;
+  padding-top: 40px;
   max-width: 100%;
   min-width: 352px !important;
 }
 
 .toast-container .ngx-toastr {
   width: 350px;
+}
+
+.form-group {
+  position: relative;
+}
+
+.error {
+  position: absolute;
+  top: 0px;
+  right: 0;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 @media screen and (max-width: 991px) {
@@ -62,5 +88,41 @@ body {
   }
   .navbar-toggler.collapsed ~ .navbar-collapse {
     transition: left 500ms ease-in-out;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
   }
 }

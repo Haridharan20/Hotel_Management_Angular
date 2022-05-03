@@ -7,10 +7,16 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  name!: string;
-  constructor(private service: LoginService) {}
+  userName!: string;
+  constructor(public service: LoginService) {}
 
   ngOnInit(): void {
-    this.name = localStorage.getItem('name') || 'demo';
+    if (!this.service.loggedIn()) {
+      this.userName = localStorage.getItem('user') || '';
+    }
+  }
+
+  onLogout() {
+    this.service.logout();
   }
 }

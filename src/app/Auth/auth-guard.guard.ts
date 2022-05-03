@@ -2,15 +2,23 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
+import { LoginService } from '../services/login.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuardGuard implements CanActivate {
+  constructor(
+    private authService: LoginService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -19,11 +27,16 @@ export class AuthGuardGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const isLogged = localStorage.getItem('Login') ? true : false;
-    if (isLogged) {
+    if (!this.authService.loggedIn()) {
       return true;
     } else {
-      alert('Login Required');
+      this.authService.logout();
+      this.toastr.warning('Session Timeout', '', {
+        timeOut: 2000,
+        progressBar: true,
+        progressAnimation: 'decreasing',
+      });
+      this.router.navigate(['/login']);
       return false;
     }
   }
