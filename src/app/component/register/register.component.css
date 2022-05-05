@@ -41,3 +41,30 @@ input {
 a {
   text-decoration: none;
 }
+
+.tooltip {
+  position: relative;
+}
+
+.tooltiptext {
+  text-align: left !important;
+  display: none;
+  width: 200px;
+  height: 90px;
+  background-color: black;
+  color: white !important;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: -230px;
+  font-size: 10px;
+}
+
+#tooltip:hover .tooltiptext {
+  display: inline-block;
+}

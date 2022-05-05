@@ -18,10 +18,6 @@ input:-webkit-autofill:active {
   color: white;
 }
 
-input:focus {
-  border-color: rgb(128, 137, 144) !important;
-}
-
 html,
 body {
   font-family: "Poppins", sans-serif;

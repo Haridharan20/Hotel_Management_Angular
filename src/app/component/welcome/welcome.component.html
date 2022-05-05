@@ -1,0 +1,172 @@
+<div class="container mt-5">
+  <section id="main">
+    <div class="row">
+      <div class="col-12 col-lg-6 align-self-lg-center">
+        <h1 class="heading text-center text-md-start">
+          It's a Big World <br class="d-none d-md-block" />Out There,&nbsp;Go
+          <br class="d-none d-md-block" />Explore
+        </h1>
+        <p class="head-desc text-secondary text-center text-md-start mt-3">
+          We always make our customer happy by providing <br />as many choices
+          as possible
+        </p>
+        <div class="mb-4 mb-md-0 text-center text-md-start">
+          <button class="btn btn-lg btn-primary border-3">Explore now</button>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <img src="./assets/pic-1.png" alt="" class="img-fluid" />
+      </div>
+      <div class="col-12 order-first order-md-4 w-75">
+        <form [formGroup]="searchForm" (ngSubmit)="searchHotel()">
+          <section
+            id="search"
+            class="d-flex flex-column flex-md-row justify-content-between align-items-lg-center order-1 mb-4 mb-md-0"
+          >
+            <div class="flex search-contain py-3 px-4" tabindex="0">
+              <div class="location d-flex align-items-center">
+                <div>
+                  <i class="fa fa-2x fa-map-marker"></i>
+                </div>
+                <div class="ms-3">
+                  <input
+                    type="text"
+                    class="border-0 bg-transparent"
+                    placeholder="Location"
+                    formControlName="location"
+                  />
+                  <br />
+                  <span class="text-muted"> Where are you going </span>
+                </div>
+              </div>
+            </div>
+            <div class="flex filter-contain py-3 px-4" tabindex="0">
+              <div class="location d-flex align-items-center">
+                <div>
+                  <i class="fa fa-2x fa-map-marker"></i>
+                </div>
+                <div class="ms-3">
+                  <input
+                    type="text"
+                    class="border-0 bg-transparent"
+                    placeholder="Filter"
+                    (keyup)="filterName($event)"
+                  />
+                  <br />
+                  <span class="text-muted"> Where are you going </span>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="flex search-contain py-3 px-4" tabindex="0">
+              <div class="rating d-flex align-items-center">
+                <div>
+                  <i class="fa fa-solid fa-star"></i>
+                </div>
+                <div class="ms-3">
+                  <input
+                    type="number"
+                    min="0"
+                    max="5"
+                    [(ngModel)]="searchRating"
+                    class="border-0 bg-transparent"
+                    placeholder="Rating"
+                    formControlName="rating"
+                  />
+                  <br />
+                  <span class="text-muted"> Search by rating </span>
+                </div>
+              </div>
+            </div> -->
+            <!-- <div class="check_in d-flex py-3 px-4" tabindex="0">
+              <div class="checkin d-flex align-items-center">
+                <div>
+                  <i class="fa fa-2x fa-calendar-minus-o"></i>
+                </div>
+                <div class="ms-3">
+                  <input
+                    type="date"
+                    placeholder="Check in"
+                    class="bg-transparent border-0"
+                    formControlName="checkin"
+                  />
+                  <br />
+                  <span class="text-muted">Add date</span>
+                </div>
+              </div>
+            </div> -->
+            <!-- <div class="check_out d-flex py-3 px-4" tabindex="0">
+              <div class="checkout d-flex align-items-center">
+                <div>
+                  <i class="fa fa-2x fa-calendar-minus-o"></i>
+                </div>
+                <div class="ms-3">
+                  <input
+                    type="date"
+                    placeholder="Check out"
+                    class="bg-transparent border-0"
+                    formControlName="checkout"
+                  />
+                  <br />
+                  <span class="text-muted">Add date</span>
+                </div>
+              </div>
+            </div> -->
+            <div class="search_button py-3 px-4" tabindex="0">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="!searchForm.valid"
+              >
+                <span class="d-md-none">Search</span>
+                <i class="fa fa-solid fa-search"></i>
+              </button>
+            </div>
+          </section>
+        </form>
+      </div>
+    </div>
+  </section>
+  <section id="card-section" *ngIf="filteredHotels != null">
+    <h1>Hello {{ filteredHotels[0]?.city }}</h1>
+    <div class="row justify-content-center my-2 mb-md-2 p-2 align-items-end">
+      <div
+        class=".col-12 col-md-6 col-lg-4 mb-3"
+        *ngFor="let hotel of filteredHotels | filter: filtername"
+      >
+        <div class="card">
+          <a [routerLink]="['/hotelDetail', hotel._id]">
+            <img src="{{ hotel.images[0] }}" alt="" class="card-img-top" />
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <div class="info">
+                  <h2 class="m-0">{{ hotel.name }}</h2>
+                  <p class="mb-1">Rooms-{{ hotel.rooms.length }}</p>
+                  <div>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span class="text-primary mb-0 ms-2">{{
+                      hotel.address
+                    }}</span>
+                  </div>
+                </div>
+                <div class="favo">
+                  <i class="fa fa-solid fa-heart heart"></i>
+                </div>
+              </div>
+              <hr />
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="price">
+                  Rooms starts at <br />
+                  $2000 /-
+                </div>
+                <div class="rating">
+                  <i class="fa fa-solid fa-star text-warning"></i>
+                  <span>{{ hotel.ratings }}&nbsp;(340)</span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

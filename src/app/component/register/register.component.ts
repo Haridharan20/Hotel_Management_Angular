@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
       [
         Validators.required,
         Validators.minLength(10),
-        // Validators.pattern(this.phonePattern),
+        Validators.pattern(this.phonePattern),
       ],
     ],
     password: [

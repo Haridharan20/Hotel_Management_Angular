@@ -12,6 +12,14 @@ import { ProfileComponent } from './component/profile/profile.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuardGuard } from './Auth/auth-guard.guard';
 import { AuthService } from './services/auth.service';
+import { HotelComponent } from './component/hotel/hotel.component';
+import { HoteldetailsComponent } from './component/hoteldetails/hoteldetails.component';
+import { HotelAdminComponent } from './component/hotel-admin/hotel-admin.component';
+import { CreateRoomComponent } from './component/create-room/create-room.component';
+import { WelcomeComponent } from './component/welcome/welcome.component';
+import { HotelDetailComponent } from './component/hotel-detail/hotel-detail.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { DatePipe } from './pipes/date.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +28,14 @@ import { AuthService } from './services/auth.service';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
+    HotelComponent,
+    HoteldetailsComponent,
+    HotelAdminComponent,
+    CreateRoomComponent,
+    WelcomeComponent,
+    HotelDetailComponent,
+    FilterPipe,
+    DatePipe,
   ],
   imports: [
     BrowserModule,

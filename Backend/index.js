@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const userRoute = require("./routes/user.routes");
+const hotelRoute = require("./routes/hotel.routes");
+const roomRoutes = require("./routes/room.routes");
 const expressSession = require("express-session");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -25,3 +27,5 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use("/user", userRoute);
+app.use("/hotel", hotelRoute);
+app.use("/room", roomRoutes);
