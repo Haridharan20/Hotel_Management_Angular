@@ -1,0 +1,61 @@
+.content {
+  border-radius: 15px;
+  background-color: rgb(17, 24, 39);
+  color: white;
+}
+
+.pic img {
+  border-radius: 10px;
+  height: 100%;
+}
+
+.fa-star {
+  color: gold;
+}
+
+.fa-bolt {
+  line-height: 20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.badge {
+  border-radius: 15px;
+}
+
+span {
+  color: rgb(160, 159, 159);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.detail > h6 {
+  background-color: rgba(29, 250, 85, 0.795);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.offer {
+  background-color: #f3a888;
+  border-radius: 15px;
+  width: 200px;
+  color: orangered;
+  font-size: 14px;
+}
+
+.offer h6 {
+  font-size: 14px;
+  background-color: #d3511a;
+  color: white;
+  display: inline;
+  border-radius: 15px;
+}
+
+.offer p {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0;
+}

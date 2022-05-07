@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ComponentService } from 'src/app/services/component.service';
 import { HotelService } from 'src/app/services/hotel.service';
 
 @Component({
@@ -12,12 +13,35 @@ export class HotelDetailComponent implements OnInit {
   rooms: any[] = [];
   inDate!: String;
   outDate!: String;
+  filterString = '';
+  hotelDetails!: any;
   constructor(
     private route: ActivatedRoute,
     private hotelService: HotelService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.hotelId = this.route.snapshot.paramMap.get('id');
+    console.log(this.hotelId);
+    this.hotelService.getHotelRoom(this.hotelId).subscribe({
+      next: (result) => {
+        console.log(result);
+        this.rooms = result;
+      },
+    });
+
+    this.hotelService.getHotel(this.hotelId).subscribe({
+      next: (result) => {
+        console.log('Hotel', result);
+        this.hotelDetails = result;
+      },
+    });
+  }
+
+  filterName(event: any) {
+    console.log('up');
+    this.filterString = (<HTMLInputElement>event.target).value;
+  }
 
   chooseInDate(event: any) {
     this.inDate = (<HTMLInputElement>event.target).value;

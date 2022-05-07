@@ -14,6 +14,10 @@ export class HotelService {
     });
   }
 
+  getHotel(id: any): Observable<any> {
+    return this.http.get(`http://localhost:8000/hotel/${id}`);
+  }
+
   getHotelByCity(location: any): Observable<any> {
     let params = new HttpParams().set('city', location);
     return this.http.get(`http://localhost:8000/hotel/hotelByCity`, { params });

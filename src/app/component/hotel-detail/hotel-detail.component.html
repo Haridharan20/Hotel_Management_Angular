@@ -1,4 +1,222 @@
-<div class="mt-5">
-  <input type="date" name="checkin" (change)="chooseInDate($event)" />
-  <input type="date" name="checkout" (change)="chooseOutDate($event)" />
+<div class="banner">
+  <!-- <input type="date" name="checkin" (change)="chooseInDate($event)" />
+  <input type="date" name="checkout" (change)="chooseOutDate($event)" /> -->
+  <form class="container">
+    <section
+      id="search"
+      class="d-flex flex-column flex-md-row justify-content-between align-items-lg-center order-1 mb-4 mb-md-0"
+    >
+      <div class="flex filter-contain py-3 px-4" tabindex="0">
+        <div class="filter d-flex align-items-center">
+          <div>
+            <i class="fa-solid fa-filter fa-2x"></i>
+          </div>
+          <div class="ms-3">
+            <input
+              type="text"
+              class="border-0 bg-transparent"
+              placeholder="Filter"
+              (keyup)="filterName($event)"
+            />
+            <br />
+            <span class="text-muted"> Search by Room name </span>
+          </div>
+        </div>
+      </div>
+      <div class="check_in d-flex py-3 px-4" tabindex="0">
+        <div class="checkin date d-flex align-items-center">
+          <div>
+            <i class="fa fa-2x fa-calendar-minus-o"></i>
+          </div>
+          <div class="ms-3">
+            <input
+              type="date"
+              placeholder="Check in"
+              class="bg-transparent border-0"
+              (change)="chooseInDate($event)"
+            />
+            <br />
+            <span class="text-muted">check_in date</span>
+          </div>
+        </div>
+      </div>
+      <div class="check_out d-flex py-3 px-4" tabindex="0">
+        <div class="checkout date d-flex align-items-center">
+          <div>
+            <i class="fa fa-2x fa-calendar-minus-o"></i>
+          </div>
+          <div class="ms-3">
+            <input
+              type="date"
+              placeholder="Check out"
+              class="bg-transparent border-0"
+              (change)="chooseOutDate($event)"
+            />
+            <br />
+            <span class="text-muted">check_out date</span>
+          </div>
+        </div>
+      </div>
+      <div class="search_button py-3 px-4" tabindex="0">
+        <button type="submit" class="btn btn-primary">
+          <span class="d-md-none">Search</span>
+          <i class="fa fa-solid fa-search"></i>
+        </button>
+      </div>
+    </section>
+  </form>
+</div>
+<div class="container-fluid px-md-5 mt-5">
+  <h3 class="text-center">Rooms in {{ hotelDetails?.name }}</h3>
+  <div class="row mt-5 mt-md-0">
+    <div class="col-2 d-none d-md-block border filter-div px-4">
+      <h5 class="font-weight-bold mt-2">Filters</h5>
+      <details open class="my-3">
+        <summary>Popular Filter</summary>
+        <div class="form-check mt-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            Free Cancellation
+          </label>
+        </div>
+
+        <div class="form-check mt-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            Pay at hotel
+          </label>
+        </div>
+      </details>
+      <details open class="mb-3">
+        <summary>Price Range</summary>
+        <div class="form-check mt-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            Upto $200
+          </label>
+        </div>
+
+        <div class="form-check mt-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            $200 - $400
+          </label>
+        </div>
+      </details>
+      <details open class="mb-3">
+        <summary>Star Rating</summary>
+        <div class="form-check mt-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star text-warning"></i>
+          </label>
+        </div>
+
+        <div class="form-check mt-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star text-warning"></i>
+          </label>
+        </div>
+
+        <div class="form-check mt-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            <i class="fa-solid fa-star text-warning"></i>
+            <i class="fa-solid fa-star text-warning"></i>
+          </label>
+        </div>
+      </details>
+
+      <details open class="mb-3">
+        <summary>Room Capacity</summary>
+        <div class="form-check mt-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            6 Sharing
+          </label>
+        </div>
+
+        <div class="form-check mt-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            4 Sharing
+          </label>
+        </div>
+
+        <div class="form-check mt-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            2 Sharing
+          </label>
+        </div>
+      </details>
+    </div>
+
+    <div class="col-12 col-md-10 main mt-5 mt-md-0">
+      <div
+        class="row"
+        *ngFor="
+          let room of rooms | roomtype: filterString | date: inDate:outDate
+        "
+      >
+        <app-room [value]="room" [hotel]="hotelDetails"></app-room>
+      </div>
+    </div>
+  </div>
 </div>

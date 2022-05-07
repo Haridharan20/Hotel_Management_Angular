@@ -20,6 +20,8 @@ import { WelcomeComponent } from './component/welcome/welcome.component';
 import { HotelDetailComponent } from './component/hotel-detail/hotel-detail.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { DatePipe } from './pipes/date.pipe';
+import { RoomtypePipe } from './pipes/roomtype.pipe';
+import { RoomComponent } from './component/room/room.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { DatePipe } from './pipes/date.pipe';
     HotelDetailComponent,
     FilterPipe,
     DatePipe,
+    RoomtypePipe,
+    RoomComponent,
   ],
   imports: [
     BrowserModule,
