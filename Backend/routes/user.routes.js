@@ -9,7 +9,7 @@ route.get("/", (req, res) => {
 
 route.post("/register", controller.register);
 route.post("/login", controller.login);
-
+route.post("/refresh", controller.refreshToken);
 route.get("/profile", verify.validate, controller.profile);
 
 // module.exports = route;

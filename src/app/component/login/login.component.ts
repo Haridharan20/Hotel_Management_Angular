@@ -34,7 +34,11 @@ export class LoginComponent implements OnInit {
     this.userService.userLogin(username, password).subscribe({
       next: (result: any) => {
         console.log(result);
-        this.userService.storeUserData(result.token, result.data.name);
+        this.userService.storeUserData(
+          result.token,
+          result.data.name,
+          result.refresh
+        );
         this.toastr.success(result.msg, '', {
           timeOut: 2000,
           progressBar: true,

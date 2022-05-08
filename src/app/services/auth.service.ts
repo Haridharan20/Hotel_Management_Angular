@@ -38,19 +38,18 @@ export class AuthService {
   }
 
   getProfile() {
-    this.getToken();
-    // console.log('this', this.authToken);
-    const headers = new HttpHeaders({
-      Authorization: this.authToken,
-    });
+    // this.getToken();
+    // // console.log('this', this.authToken);
+    // const headers = new HttpHeaders({
+    //   Authorization: this.authToken,
+    // });
     // console.log(headers);
-    return this.http.get('http://localhost:8000/user/profile', {
-      headers,
-    });
+    return this.http.get('http://localhost:8000/user/profile');
   }
 
-  storeUserData(token: string, name: string) {
+  storeUserData(token: string, name: string, refresh: string) {
     localStorage.setItem('token', token);
+    localStorage.setItem('refresh', refresh);
     localStorage.setItem('user', name);
     this.authToken = token;
     this.user = name;
@@ -61,19 +60,38 @@ export class AuthService {
     this.user = null;
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('refresh');
   }
 
   loggedIn() {
+    // return !this.getJwtToken();
     const isExpire = new JwtHelperService();
-    let localToken = localStorage.getItem('token')?.slice(4);
-    // console.log('auth', this.authToken);
-    // console.log(localToken);
-    // console.log('Expire', isExpire.isTokenExpired(localToken));
+    let localToken = localStorage.getItem('refresh') || '';
+    console.log(isExpire.isTokenExpired(localToken));
     return isExpire.isTokenExpired(localToken);
+  }
+
+  getJwtToken() {
+    return localStorage.getItem('token');
   }
 
   getToken() {
     const token = localStorage.getItem('token');
     this.authToken = token;
+    return token;
+  }
+
+  refreshToken() {
+    return this.http.post('http://localhost:8000/user/refresh', {
+      refreshToken: this.getRefreshToken(),
+    });
+  }
+
+  getAccessToken() {
+    return localStorage.getItem('token');
+  }
+
+  getRefreshToken() {
+    return localStorage.getItem('refresh');
   }
 }

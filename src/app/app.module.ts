@@ -7,7 +7,7 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProfileComponent } from './component/profile/profile.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuardGuard } from './Auth/auth-guard.guard';
@@ -24,6 +24,7 @@ import { RoomtypePipe } from './pipes/roomtype.pipe';
 import { RoomComponent } from './component/room/room.component';
 import { RoomsharingPipe } from './pipes/roomsharing.pipe';
 import { RoomDetailComponent } from './component/room-detail/room-detail.component';
+import { InterceptorServiceService } from './interceptor/interceptor-service.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,15 @@ import { RoomDetailComponent } from './component/room-detail/room-detail.compone
       closeButton: true,
     }),
   ],
-  providers: [AuthGuardGuard, AuthService],
+  providers: [
+    AuthGuardGuard,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorServiceService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,6 +1,7 @@
 const UserModel = require("../model/user.model");
 const encrypt = require("bcrypt");
 const jwt = require("../auth/token");
+const { async } = require("rxjs");
 const userController = {
   register: async (req, res) => {
     const { username, email, phonenumber, password } = req.body;
@@ -45,13 +46,15 @@ const userController = {
           .status(400)
           .json({ success: false, msg: "Password not Match" });
       } else {
-        const token = await jwt.generateToken(user.email);
+        const token = await jwt.generateAccessToken(user.email);
+        const refreshtoken = await jwt.generateRefreshToken(user.email);
         res.cookie("jwt", token, { httpOnly: true });
         res.json({
           success: true,
           msg: "Logged success",
           data: user,
-          token: "JWT " + token,
+          token: token,
+          refresh: refreshtoken,
         });
       }
     } catch (error) {
@@ -70,6 +73,18 @@ const userController = {
     }
 
     // res.json({ msg: "I am protected", user: req.data });
+  },
+  refreshToken: async (req, res) => {
+    const refreshToken = req.body.refreshToken;
+    if (!refreshToken) {
+      return res.json("User not found");
+    }
+    const token = await jwt.tokenValidator(refreshToken, "refresh");
+    console.log("token", token);
+    if (token) {
+      const accessToken = jwt.generateAccessToken(token.email);
+      return res.json({ accessToken });
+    }
   },
 };
 

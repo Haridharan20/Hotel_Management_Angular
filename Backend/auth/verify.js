@@ -1,15 +1,15 @@
 const validator = require("./token");
 const validate = async (req, res, next) => {
-  console.log(req.headers.authorization);
-  jtoken = req.headers.authorization.slice(4);
+  // console.log("auth", req.headers.authorization);
   try {
-    const valid = await validator.tokenValidator(jtoken);
+    jtoken = req.headers.authorization.slice(4);
+    const valid = await validator.tokenValidator(jtoken, "hotel_management");
     console.log("v", valid);
     if (valid) {
       req.data = valid;
       next();
     } else {
-      res.send("Access denied");
+      res.status(401).send("Access denied");
     }
   } catch (err) {
     res.send(err);
