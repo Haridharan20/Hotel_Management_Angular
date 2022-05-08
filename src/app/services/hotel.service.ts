@@ -27,8 +27,12 @@ export class HotelService {
     return this.http.get('http://localhost:8000/hotel/hotels');
   }
 
-  getHotelRoom(id: any): Observable<any> {
+  getHotelRooms(id: any): Observable<any> {
     return this.http.get(`http://localhost:8000/room/getRooms/${id}`);
+  }
+
+  getRoom(id: any): Observable<any> {
+    return this.http.get(`http://localhost:8000/room/getRoom/${id}`);
   }
 
   updateHotel(hotel_id: any, rooms: any) {

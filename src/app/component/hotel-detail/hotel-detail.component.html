@@ -174,8 +174,9 @@
           <input
             class="form-check-input"
             type="checkbox"
-            value=""
+            value="6"
             id="flexCheckDefault"
+            (change)="checkEvent($event)"
           />
           <label class="form-check-label" for="flexCheckDefault">
             6 Sharing
@@ -186,11 +187,12 @@
           <input
             class="form-check-input"
             type="checkbox"
-            value=""
+            value="5"
             id="flexCheckDefault"
+            (change)="checkEvent($event)"
           />
           <label class="form-check-label" for="flexCheckDefault">
-            4 Sharing
+            5 Sharing
           </label>
         </div>
 
@@ -198,7 +200,7 @@
           <input
             class="form-check-input"
             type="checkbox"
-            value=""
+            value="2"
             id="flexCheckDefault"
           />
           <label class="form-check-label" for="flexCheckDefault">
@@ -212,7 +214,10 @@
       <div
         class="row"
         *ngFor="
-          let room of rooms | roomtype: filterString | date: inDate:outDate
+          let room of rooms
+            | roomtype: filterString
+            | date: inDate:outDate
+            | roomsharing: checkArr
         "
       >
         <app-room [value]="room" [hotel]="hotelDetails"></app-room>

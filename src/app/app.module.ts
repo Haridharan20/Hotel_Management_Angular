@@ -22,6 +22,8 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { DatePipe } from './pipes/date.pipe';
 import { RoomtypePipe } from './pipes/roomtype.pipe';
 import { RoomComponent } from './component/room/room.component';
+import { RoomsharingPipe } from './pipes/roomsharing.pipe';
+import { RoomDetailComponent } from './component/room-detail/room-detail.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { RoomComponent } from './component/room/room.component';
     DatePipe,
     RoomtypePipe,
     RoomComponent,
+    RoomsharingPipe,
+    RoomDetailComponent,
   ],
   imports: [
     BrowserModule,

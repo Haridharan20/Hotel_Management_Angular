@@ -34,5 +34,15 @@ const roomController = {
         res.json("Error");
       });
   },
+
+  getRoom: (req, res) => {
+    RoomModel.findById(req.params.id)
+      .then((result) => {
+        res.json(result);
+      })
+      .catch((err) => {
+        console.log("Error");
+      });
+  },
 };
 module.exports = roomController;

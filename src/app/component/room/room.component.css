@@ -59,3 +59,13 @@ span {
   font-size: 14px;
   margin: 0;
 }
+
+@media screen and (max-width: 991px) {
+  .content {
+    position: relative;
+  }
+  .offer {
+    position: absolute;
+    top: 10px;
+  }
+}

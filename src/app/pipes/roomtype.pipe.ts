@@ -17,6 +17,7 @@ export class RoomtypePipe implements PipeTransform {
         result.push(ele);
       }
     });
+
     return result;
   }
 }

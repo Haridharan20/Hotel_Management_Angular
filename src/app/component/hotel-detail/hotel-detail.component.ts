@@ -15,6 +15,7 @@ export class HotelDetailComponent implements OnInit {
   outDate!: String;
   filterString = '';
   hotelDetails!: any;
+  checkArr: any = [];
   constructor(
     private route: ActivatedRoute,
     private hotelService: HotelService
@@ -23,7 +24,7 @@ export class HotelDetailComponent implements OnInit {
   ngOnInit(): void {
     this.hotelId = this.route.snapshot.paramMap.get('id');
     console.log(this.hotelId);
-    this.hotelService.getHotelRoom(this.hotelId).subscribe({
+    this.hotelService.getHotelRooms(this.hotelId).subscribe({
       next: (result) => {
         console.log(result);
         this.rooms = result;
@@ -50,6 +51,17 @@ export class HotelDetailComponent implements OnInit {
 
   chooseOutDate(event: any) {
     this.outDate = (<HTMLInputElement>event.target).value;
+  }
+
+  checkEvent(event: any) {
+    let val = (<HTMLInputElement>event.target).value;
+    if (<HTMLInputElement>event.target.checked) {
+      this.checkArr.push(val);
+    } else {
+      let index = this.checkArr.indexOf(val);
+      this.checkArr.splice(index, 1);
+    }
+    console.log(this.checkArr);
   }
 }
 
