@@ -1,2 +1,11 @@
 <p>profile works!</p>
 <h1>{{ Username }}</h1>
+<ul>
+  <li *ngFor="let booking of bookings">
+    <ul>
+      <li>{{ booking.Hotelname }}</li>
+      <li>{{ booking.RoomType }}</li>
+      <li>&#x20B9; {{ booking.amount }}</li>
+    </ul>
+  </li>
+</ul>

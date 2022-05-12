@@ -3,14 +3,14 @@ const HotelModel = require("../model/hotel.model");
 const hotelController = {
   add: (req, res) => {
     console.log(req);
-    const { name, address, city, state, contact_no, images } = req.body;
+    const { hotelname, address, city, state, zip, phone } = req.body;
     const model = new HotelModel({
-      name,
+      name: hotelname,
       address,
       city,
       state,
-      contact_no,
-      images,
+      zip,
+      contact_no: phone,
     });
     model
       .save()

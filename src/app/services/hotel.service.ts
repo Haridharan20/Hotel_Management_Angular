@@ -8,10 +8,9 @@ import { Observable } from 'rxjs';
 export class HotelService {
   constructor(private http: HttpClient) {}
 
-  createHotel(name: string): Observable<any> {
-    return this.http.post('http://localhost:8000/hotel/add', {
-      name,
-    });
+  createHotel(hotel: any): Observable<any> {
+    console.log(hotel);
+    return this.http.post('http://localhost:8000/hotel/add', hotel);
   }
 
   getHotel(id: any): Observable<any> {
@@ -43,10 +42,7 @@ export class HotelService {
     });
   }
 
-  createRoom(id: any, type: string) {
-    return this.http.post('http://localhost:8000/room/add', {
-      id,
-      type,
-    });
+  createRoom(room: any) {
+    return this.http.post('http://localhost:8000/room/add', room);
   }
 }

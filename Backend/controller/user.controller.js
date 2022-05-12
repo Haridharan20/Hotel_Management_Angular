@@ -69,10 +69,27 @@ const userController = {
         id: user._id,
         name: user.name,
         email: user.email,
+        bookings: user.myBookings,
       });
     }
 
     // res.json({ msg: "I am protected", user: req.data });
+  },
+
+  myBooking: (req, res) => {
+    console.log(req.body, req.data);
+    UserModel.updateOne(
+      { email: req.data.email },
+      { $push: { myBookings: req.body } },
+      function (err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          console.log("res", result);
+          res.send(result);
+        }
+      }
+    );
   },
   refreshToken: async (req, res) => {
     const refreshToken = req.body.refreshToken;

@@ -6,7 +6,15 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
-import { catchError, Observable, switchMap, throwError } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  filter,
+  Observable,
+  switchMap,
+  take,
+  throwError,
+} from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
@@ -32,12 +40,17 @@ export class InterceptorServiceService implements HttpInterceptor {
       })
     );
   }
-
+  private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(
+    null
+  );
   private handleError(req: HttpRequest<any>, next: HttpHandler) {
     if (!this.refresh) {
       this.refresh = true;
+      this.refreshTokenSubject.next(null);
       return this.authService.refreshToken().pipe(
         switchMap((newTokens: any) => {
+          this.refresh = false;
+          this.refreshTokenSubject.next(newTokens.accessToken);
           console.log('tokenswer', newTokens);
           localStorage.setItem('token', newTokens.accessToken);
           return next.handle(
@@ -46,8 +59,14 @@ export class InterceptorServiceService implements HttpInterceptor {
         })
       );
     } else {
-      this.refresh = false;
-      return next.handle(req);
+      return this.refreshTokenSubject.pipe(
+        filter((token) => token != null),
+        take(1),
+        switchMap((jwt) => {
+          console.log('jwt', jwt);
+          return next.handle(this.addToken(req, jwt));
+        })
+      );
     }
   }
 

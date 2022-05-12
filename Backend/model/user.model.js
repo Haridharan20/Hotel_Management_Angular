@@ -19,7 +19,7 @@ const UserSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    favourite: {
+    myBookings: {
       type: [Object],
       default: null,
     },

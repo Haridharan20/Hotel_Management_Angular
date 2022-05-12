@@ -9,14 +9,16 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ProfileComponent implements OnInit {
   Username!: string;
+  bookings: any = [];
   constructor(private userService: AuthService) {}
 
   ngOnInit(): void {
     console.log('init');
     this.userService.getProfile().subscribe({
       next: (result: any) => {
-        console.log(result.name);
+        console.log(result);
         this.Username = result.name;
+        this.bookings = result.bookings;
       },
       error: (err: any) => {
         console.log(err);

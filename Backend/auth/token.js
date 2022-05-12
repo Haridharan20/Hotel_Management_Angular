@@ -9,18 +9,23 @@ const generateAccessToken = (email) => {
 
 const generateRefreshToken = (email) => {
   const token = jwt.sign({ email }, "refresh", {
-    expiresIn: "1m",
+    expiresIn: "15m",
   });
   return token;
 };
 
 const tokenValidator = async (token, secret) => {
   try {
+    console.log(secret);
     const data = await jwt.verify(token, secret);
     console.log("data", data);
     return data;
   } catch (err) {
-    return false;
+    if (err instanceof jwt.TokenExpiredError) {
+      console.log("Token expire");
+      return false;
+    }
+    // console.log("error secret", err);
   }
 };
 

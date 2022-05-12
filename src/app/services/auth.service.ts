@@ -38,13 +38,12 @@ export class AuthService {
   }
 
   getProfile() {
-    // this.getToken();
-    // // console.log('this', this.authToken);
-    // const headers = new HttpHeaders({
-    //   Authorization: this.authToken,
-    // });
-    // console.log(headers);
     return this.http.get('http://localhost:8000/user/profile');
+  }
+
+  addMyBooking(bookingData: any) {
+    console.log('Bookinng', bookingData);
+    return this.http.post('http://localhost:8000/user/myBooking', bookingData);
   }
 
   storeUserData(token: string, name: string, refresh: string) {
@@ -67,7 +66,6 @@ export class AuthService {
     // return !this.getJwtToken();
     const isExpire = new JwtHelperService();
     let localToken = localStorage.getItem('refresh') || '';
-    console.log(isExpire.isTokenExpired(localToken));
     return isExpire.isTokenExpired(localToken);
   }
 
@@ -82,6 +80,7 @@ export class AuthService {
   }
 
   refreshToken() {
+    console.log('call from interceptor');
     return this.http.post('http://localhost:8000/user/refresh', {
       refreshToken: this.getRefreshToken(),
     });

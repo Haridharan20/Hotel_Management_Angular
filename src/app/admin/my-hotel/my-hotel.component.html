@@ -1,5 +1,5 @@
 <div *ngFor="let hotel of hotelArr">
   <h1>{{ hotel.name || "" }}-{{ hotel.rooms.length }}</h1>
   <h2>{{ hotel.address }}</h2>
-  <a [routerLink]="['/create', hotel._id]">CreateRoom</a>
+  <a [routerLink]="['/admin/createRoom', hotel._id]">CreateRoom</a>
 </div>

@@ -25,11 +25,15 @@ const HotelSchema = mongoose.Schema({
     type: String,
     requird: true,
   },
-
+  zip: {
+    type: String,
+    required: true,
+  },
   contact_no: {
     type: Number,
     required: true,
   },
+
   images: {
     type: [String],
     required: true,

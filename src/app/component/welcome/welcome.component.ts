@@ -28,11 +28,6 @@ export class WelcomeComponent implements OnInit {
   });
 
   searchHotel() {
-    window.scrollTo({
-      top: 800,
-      left: 0,
-      behavior: 'smooth',
-    });
     console.log(this.searchForm.value);
     const { location } = this.searchForm.value;
     let city = location.toLowerCase();

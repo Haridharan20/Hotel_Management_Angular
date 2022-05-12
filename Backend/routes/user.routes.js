@@ -11,6 +11,7 @@ route.post("/register", controller.register);
 route.post("/login", controller.login);
 route.post("/refresh", controller.refreshToken);
 route.get("/profile", verify.validate, controller.profile);
+route.post("/myBooking", verify.validate, controller.myBooking);
 
 // module.exports = route;
 module.exports = route;

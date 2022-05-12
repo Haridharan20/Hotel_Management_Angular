@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { HotelService } from 'src/app/services/hotel.service';
 
 @Component({
-  selector: 'app-hoteldetails',
-  templateUrl: './hoteldetails.component.html',
-  styleUrls: ['./hoteldetails.component.css'],
+  selector: 'app-my-hotel',
+  templateUrl: './my-hotel.component.html',
+  styleUrls: ['./my-hotel.component.css'],
 })
-export class HoteldetailsComponent implements OnInit {
+export class MyHotelComponent implements OnInit {
   hotelArr: any[] = [];
   constructor(private hotelService: HotelService) {}
 

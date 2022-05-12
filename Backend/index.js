@@ -4,9 +4,9 @@ const bodyParser = require("body-parser");
 const userRoute = require("./routes/user.routes");
 const hotelRoute = require("./routes/hotel.routes");
 const roomRoutes = require("./routes/room.routes");
-const expressSession = require("express-session");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+require("dotenv/config");
 
 const app = express();
 app.use(cors());
@@ -15,8 +15,7 @@ app.use(bodyParser.json());
 
 const port = 8000;
 
-const uri =
-  "mongodb+srv://hari:root@cluster0.cnjpa.mongodb.net/Hotel?retryWrites=true&w=majority";
+const uri = process.env.DB_CONNECTION;
 mongoose
   .connect(uri)
   .then((result) =>

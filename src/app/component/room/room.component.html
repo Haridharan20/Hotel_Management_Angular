@@ -1,5 +1,5 @@
 <a
-  [routerLink]="['/roomDetail', hotel.name, value._id]"
+  [routerLink]="['/roomDetail', hotel?.name, value?._id]"
   class="text-decoration-none"
 >
   <div class="col-12 mb-2">
@@ -7,10 +7,12 @@
       <div class="row">
         <div class="col-12 col-md-9">
           <div class="row">
-            <div class="col-5 pic">
+            <div class="col-12 col-md-5 pic">
               <img src="{{ value.images[0] }}" alt="" class="img-fluid" />
             </div>
-            <div class="col-7 d-flex flex-column justify-content-between ps-0">
+            <div
+              class="col-12 col-md-7 mt-3 d-flex flex-column justify-content-between ps-md-0"
+            >
               <div
                 class="top d-flex flex-column flex-md-row justify-content-between"
               >
@@ -30,14 +32,14 @@
                   </span>
                 </div>
 
-                <div class="ratings mb-3 mb-md-0">
+                <div class="ratings my-2 my-md-0">
                   <span class="badge bg-success p-1 px-2 me-2 text-white"
                     >3.8/5</span
                   >
                   <span>39 Ratings</span>
                 </div>
               </div>
-              <div class="d-none d-md-block d-flex flex-column">
+              <div class="d-flex flex-column">
                 <span class="mb-1">
                   <i class="fa-solid fa-bolt text-white bg-primary me-2"></i
                   >Good Service quality
@@ -82,10 +84,10 @@
               <p class="m-0">+7363 Tax price</p>
             </div>
           </div>
-          <div>
+          <!-- <div>
             <h6>location: {{ hotel?.address }}</h6>
             <p class="text-start">Contact: {{ hotel?.contact_no }}</p>
-          </div>
+          </div> -->
           <!-- <div class="available">
             <span>From: {{ value.dates[0].start }}</span>
             <br />

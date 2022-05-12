@@ -40,13 +40,13 @@ span {
 .offer {
   background-color: #f3a888;
   border-radius: 15px;
-  width: 200px;
+  width: 140px;
   color: orangered;
   font-size: 14px;
 }
 
 .offer h6 {
-  font-size: 14px;
+  font-size: 12px;
   background-color: #d3511a;
   color: white;
   display: inline;
@@ -56,16 +56,6 @@ span {
 .offer p {
   display: inline-block;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 12px;
   margin: 0;
-}
-
-@media screen and (max-width: 991px) {
-  .content {
-    position: relative;
-  }
-  .offer {
-    position: absolute;
-    top: 10px;
-  }
 }

@@ -9,9 +9,11 @@ const validate = async (req, res, next) => {
       req.data = valid;
       next();
     } else {
+      console.log("else");
       res.status(401).send("Access denied");
     }
   } catch (err) {
+    console.log("send");
     res.send(err);
   }
 };

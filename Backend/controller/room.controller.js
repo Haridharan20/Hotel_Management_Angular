@@ -2,14 +2,13 @@ const RoomModel = require("../model/room.model");
 const hotelController = require("../controller/hotel.controller");
 const roomController = {
   addRoom: (req, res) => {
-    const { hotel_id, roomtype, price, capacity, dates, images } = req.body;
+    const { hotel_id, roomtype, price, capacity, dates } = req.body;
     const model = RoomModel({
       hotel_id,
       roomtype,
       price,
       capacity,
       dates,
-      images,
     });
     model
       .save()
