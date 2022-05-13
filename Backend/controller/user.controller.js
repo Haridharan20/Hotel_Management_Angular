@@ -1,7 +1,8 @@
 const UserModel = require("../model/user.model");
 const encrypt = require("bcrypt");
 const jwt = require("../auth/token");
-const { async } = require("rxjs");
+require("dotenv/config");
+const { REFRESH_TOKEN } = process.env;
 const userController = {
   register: async (req, res) => {
     const { username, email, phonenumber, password } = req.body;
@@ -16,7 +17,6 @@ const userController = {
     UserModel.find().distinct(phonenumber, function (error, ids) {
       console.log(ids);
     });
-    console.log("demo");
     const hashPass = await encrypt.hash(password, 12);
     const model = new UserModel({
       name: username,
@@ -33,7 +33,7 @@ const userController = {
   login: async (req, res) => {
     try {
       const { username, password } = req.body;
-
+      console.log(req.body);
       const user = await UserModel.findOne({ email: username });
       console.log("user", user);
       if (!user) {
@@ -48,7 +48,7 @@ const userController = {
       } else {
         const token = await jwt.generateAccessToken(user.email);
         const refreshtoken = await jwt.generateRefreshToken(user.email);
-        res.cookie("jwt", token, { httpOnly: true });
+        console.log("token", token);
         res.json({
           success: true,
           msg: "Logged success",
@@ -58,7 +58,7 @@ const userController = {
         });
       }
     } catch (error) {
-      console.log("error");
+      console.log("error", error);
     }
   },
 
@@ -72,8 +72,6 @@ const userController = {
         bookings: user.myBookings,
       });
     }
-
-    // res.json({ msg: "I am protected", user: req.data });
   },
 
   myBooking: (req, res) => {
@@ -96,8 +94,8 @@ const userController = {
     if (!refreshToken) {
       return res.json("User not found");
     }
-    const token = await jwt.tokenValidator(refreshToken, "refresh");
-    console.log("token", token);
+    const token = await jwt.tokenValidator(refreshToken, REFRESH_TOKEN);
+    // console.log("token", token);
     if (token) {
       const accessToken = jwt.generateAccessToken(token.email);
       return res.json({ accessToken });
