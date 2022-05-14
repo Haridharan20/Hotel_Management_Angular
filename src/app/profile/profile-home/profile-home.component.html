@@ -1,0 +1,48 @@
+<div class="container mt-1">
+  <div class="row">
+    <div class="col-12 col-md-2 details p-2 sticky-md-top">
+      <div class="profile-pic">
+        <img
+          src="https://images.unsplash.com/photo-1457449940276-e8deed18bfff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+          alt=""
+          class="img-fluid rounded"
+        />
+      </div>
+      <div class="dashboard-list">
+        <ul
+          class="list-unstyled bg-transparent text-center d-flex justify-content-between align-items-center flex-md-column mb-0 mt-2"
+        >
+          <a routerLink="/profile/info">
+            <li class="p-2">
+              <i class="fa-solid fa-ticket fa-2x"></i><br />
+              Profile
+            </li>
+          </a>
+          <a routerLink="/profile/booking">
+            <li class="p-2 mt-1">
+              <i class="fa-solid fa-user-group fa-2x"></i><br />
+              My Bookings
+            </li>
+          </a>
+          <a href="" (click)="onLogout()">
+            <li class="p-2 mt-1">
+              <i class="fa-solid fa-right-from-bracket fa-2x"></i><br />
+              Logout
+            </li>
+          </a>
+        </ul>
+      </div>
+    </div>
+    <div class="col-12 col-md-9 ms-md-5 right text-center">
+      <div class="banner">
+        <img
+          src="https://images.unsplash.com/photo-1552960226-639240203497?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aG90ZWx8ZW58MHwwfDB8YmxhY2t8&auto=format&fit=crop&w=500&q=60"
+          alt=""
+          class="img-fluid"
+        />
+        <h1>Welcome to dashboard</h1>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

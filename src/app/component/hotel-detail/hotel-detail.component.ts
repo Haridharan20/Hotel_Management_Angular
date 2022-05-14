@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ComponentService } from 'src/app/services/component.service';
+import { ToastrService } from 'ngx-toastr';
 import { HotelService } from 'src/app/services/hotel.service';
 
 @Component({
@@ -9,17 +10,22 @@ import { HotelService } from 'src/app/services/hotel.service';
   styleUrls: ['./hotel-detail.component.css'],
 })
 export class HotelDetailComponent implements OnInit {
+  filter!: any;
   hotelId!: any;
   rooms: any[] = [];
-  inDate!: String;
-  outDate!: String;
+  inDate!: string;
+  outDate!: string;
   filterString = '';
   hotelDetails!: any;
   checkArr: any = [];
   constructor(
+    private form: FormBuilder,
     private route: ActivatedRoute,
-    private hotelService: HotelService
+    private hotelService: HotelService,
+    private toastr: ToastrService
   ) {}
+
+  checkInForm = this.form.group({});
 
   ngOnInit(): void {
     this.hotelId = this.route.snapshot.paramMap.get('id');
@@ -46,22 +52,68 @@ export class HotelDetailComponent implements OnInit {
 
   chooseInDate(event: any) {
     this.inDate = (<HTMLInputElement>event.target).value;
-    console.log(this.inDate);
+    console.log(new Date(this.inDate).getTime());
   }
 
   chooseOutDate(event: any) {
     this.outDate = (<HTMLInputElement>event.target).value;
+    console.log(new Date(this.outDate).getTime());
   }
 
-  checkEvent(event: any) {
-    let val = (<HTMLInputElement>event.target).value;
-    if (<HTMLInputElement>event.target.checked) {
-      this.checkArr.push(val);
-    } else {
-      let index = this.checkArr.indexOf(val);
-      this.checkArr.splice(index, 1);
+  availHotel() {
+    if (this.outDate == undefined || this.inDate == undefined) {
+      this.toastr.error('Enter checkIn or checkOut Date', '', {
+        timeOut: 2000,
+        progressBar: true,
+        progressAnimation: 'decreasing',
+      });
+      return;
     }
-    console.log(this.checkArr);
+    if (new Date(this.outDate).getTime() <= new Date(this.inDate).getTime()) {
+      this.toastr.error('Enter valid checkOut Date', '', {
+        timeOut: 2000,
+        progressBar: true,
+        progressAnimation: 'decreasing',
+      });
+      return;
+    }
+    this.hotelService.getHotelRooms(this.hotelId).subscribe({
+      next: (result) => {
+        this.rooms = result.filter((room: any) => {
+          var flag = 1;
+          room.bookings.forEach((date: any) => {
+            console.log(date);
+            let from = new Date(date.from);
+            let to = new Date(date.to);
+            if (
+              this.dateRangeOverlaps(
+                from.getTime(),
+                to.getTime(),
+                new Date(this.inDate).getTime(),
+                new Date(this.outDate).getTime()
+              )
+            ) {
+              console.log('overlapping');
+              flag = 0;
+            }
+          });
+          if (flag == 1) {
+            return room;
+          }
+        });
+      },
+    });
+  }
+  dateRangeOverlaps(
+    a_start: any,
+    a_end: any,
+    b_start: any,
+    b_end: any
+  ): boolean {
+    if (a_start <= b_start && b_start <= a_end) return true; // b starts in a
+    if (a_start <= b_end && b_end <= a_end) return true; // b ends in a
+    if (b_start < a_start && a_end < b_end) return true; // a in b
+    return false;
   }
 }
 

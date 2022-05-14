@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
         this.userService.storeUserData(
           result.token,
           result.data.name,
+          result.data._id,
           result.refresh
         );
         this.toastr.success(result.msg, '', {

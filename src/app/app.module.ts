@@ -8,7 +8,6 @@ import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ProfileComponent } from './component/profile/profile.component';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuardGuard } from './Auth/auth-guard.guard';
 import { AuthService } from './services/auth.service';
@@ -28,7 +27,6 @@ import { InterceptorServiceService } from './interceptor/interceptor-service.ser
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent,
     WelcomeComponent,
     HotelDetailComponent,
     FilterPipe,

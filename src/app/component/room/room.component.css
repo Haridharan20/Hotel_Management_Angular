@@ -59,3 +59,8 @@ span {
   font-size: 12px;
   margin: 0;
 }
+
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}

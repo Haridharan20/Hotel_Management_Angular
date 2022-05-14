@@ -19,7 +19,7 @@
               (keyup)="filterName($event)"
             />
             <br />
-            <span class="text-muted"> Search by Room name </span>
+            <span class="text-muted"> Search by Room Type </span>
           </div>
         </div>
       </div>
@@ -58,7 +58,7 @@
         </div>
       </div>
       <div class="search_button py-3 px-4" tabindex="0">
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary" (click)="availHotel()">
           <span class="d-md-none">Search</span>
           <i class="fa fa-solid fa-search"></i>
         </button>
@@ -70,16 +70,13 @@
   <h3 class="text-center">Rooms in {{ hotelDetails?.name }}</h3>
   <div class="row mt-5 mt-md-0">
     <div class="col-12 main mt-5 mt-md-0">
-      <div
-        class="row"
-        *ngFor="
-          let room of rooms
-            | roomtype: filterString
-            | date: inDate:outDate
-            | roomsharing: checkArr
-        "
-      >
-        <app-room [value]="room" [hotel]="hotelDetails"></app-room>
+      <div class="row" *ngFor="let room of rooms | roomtype: filterString">
+        <app-room
+          [value]="room"
+          [hotel]="hotelDetails"
+          [in]="inDate"
+          [out]="outDate"
+        ></app-room>
       </div>
     </div>
   </div>

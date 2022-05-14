@@ -46,10 +46,11 @@ export class AuthService {
     return this.http.post('http://localhost:8000/user/myBooking', bookingData);
   }
 
-  storeUserData(token: string, name: string, refresh: string) {
+  storeUserData(token: string, name: string, uid: string, refresh: string) {
     localStorage.setItem('token', token);
     localStorage.setItem('refresh', refresh);
     localStorage.setItem('user', name);
+    localStorage.setItem('uid', uid);
     this.authToken = token;
     this.user = name;
   }
@@ -60,6 +61,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     localStorage.removeItem('refresh');
+    localStorage.removeItem('uid');
   }
 
   loggedIn() {

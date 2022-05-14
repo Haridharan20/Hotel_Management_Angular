@@ -1,0 +1,44 @@
+<div class="user-info py-5">
+  <div class="profile-pic">
+    <img
+      src="https://images.unsplash.com/photo-1457449940276-e8deed18bfff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+      alt=""
+      class="img-fluid"
+    />
+    <h1>{{ User.name }}</h1>
+    <div class="form-container mx-auto">
+      <form class="form text-start">
+        <div class="form-group mb-4">
+          <label for="name" class="mb-2">Full Name</label>
+          <input type="text" class="form-control" value="{{ User.name }}" />
+        </div>
+        <div class="form-group mb-4">
+          <label for="name" class="mb-2">Email id</label>
+          <input
+            type="text"
+            name=""
+            id=""
+            value="{{ User.email }}"
+            class="form-control"
+            disabled
+          />
+        </div>
+        <div class="form-group mb-4">
+          <label for="name" class="mb-2">Phone</label>
+          <input
+            type="text"
+            name=""
+            id=""
+            value="{{ User.phone }}"
+            class="form-control"
+          />
+        </div>
+        <div class="form-group mb-4">
+          <label for="name" class="mb-2">Address</label>
+          <input type="text" name="" id="" class="form-control" />
+        </div>
+        <button class="btn btn-primary w-100 py-2">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

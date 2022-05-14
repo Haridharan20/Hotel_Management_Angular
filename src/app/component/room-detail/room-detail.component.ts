@@ -16,12 +16,8 @@ export class RoomDetailComponent implements OnInit {
   nights: any = 1;
   amount!: any;
   currentDate: any = new Date();
-  checkin: any = this.currentDate.toISOString().split('T')[0];
-  checkout: any = new Date(
-    this.currentDate.setDate(this.currentDate.getDate() + 1)
-  )
-    .toISOString()
-    .split('T')[0];
+  checkin: any;
+  checkout: any;
 
   constructor(
     private hotelService: HotelService,
@@ -30,7 +26,7 @@ export class RoomDetailComponent implements OnInit {
     private authService: AuthService,
     private toastr: ToastrService
   ) {
-    route.params.subscribe((val) => {
+    this.route.params.subscribe((val) => {
       this.roomId = val['id'];
       this.name = val['hotel'];
       this.hotelService.getRoom(this.roomId).subscribe({
@@ -44,6 +40,12 @@ export class RoomDetailComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.checkout);
+    this.route.queryParams.subscribe((params) => {
+      this.checkin = params['checkin'];
+      this.checkout = params['checkOut'];
+      console.log(this.checkin);
+      this.calculateNight();
+    });
   }
 
   calculateNight() {
@@ -54,6 +56,14 @@ export class RoomDetailComponent implements OnInit {
   }
 
   bookRoom(type: string, price: any, nights: any) {
+    if (!this.checkAvail()) {
+      this.toastr.error('No Rooms are available on the date', '', {
+        timeOut: 2000,
+        progressBar: true,
+        progressAnimation: 'decreasing',
+      });
+      return;
+    }
     if (!this.authService.loggedIn()) {
       const bookingData = {
         Hotelname: this.name,
@@ -63,10 +73,29 @@ export class RoomDetailComponent implements OnInit {
           to: this.checkout,
         },
         amount: price * nights + 357,
+        bookedOn: new Date().toLocaleDateString(),
       };
+      let uid = localStorage.getItem('uid');
+      this.hotelService
+        .updateBooking(this.roomId, {
+          from: this.checkin,
+          to: this.checkout,
+          user: uid,
+        })
+        .subscribe({
+          next: (res) => {
+            console.log(res);
+          },
+        });
       this.authService.addMyBooking(bookingData).subscribe({
         next: (request: any) => {
           console.log('request');
+          this.toastr.success('Booking successfully', '', {
+            timeOut: 2000,
+            progressBar: true,
+            progressAnimation: 'decreasing',
+          });
+          this.router.navigate(['/login']);
         },
       });
     } else {
@@ -77,5 +106,43 @@ export class RoomDetailComponent implements OnInit {
       });
       this.router.navigate(['/login']);
     }
+  }
+
+  checkAvail(): boolean {
+    console.log('avail');
+    let flag = 1;
+    this.room.bookings.forEach((date: any) => {
+      console.log(date);
+      let from = new Date(date.from);
+      let to = new Date(date.to);
+      if (
+        this.dateRangeOverlaps(
+          from.getTime(),
+          to.getTime(),
+          new Date(this.checkin).getTime(),
+          new Date(this.checkout).getTime()
+        )
+      ) {
+        console.log('overlapping');
+        flag = 0;
+      }
+    });
+    if (flag == 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  dateRangeOverlaps(
+    a_start: any,
+    a_end: any,
+    b_start: any,
+    b_end: any
+  ): boolean {
+    if (a_start <= b_start && b_start <= a_end) return true; // b starts in a
+    if (a_start <= b_end && b_end <= a_end) return true; // b ends in a
+    if (b_start < a_start && a_end < b_end) return true; // a in b
+    return false;
   }
 }

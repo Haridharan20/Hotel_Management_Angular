@@ -1,0 +1,9 @@
+.card {
+  border: 1px solid #2a3441;
+  border-radius: 20px;
+  background-color: #111827;
+}
+.card img {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}

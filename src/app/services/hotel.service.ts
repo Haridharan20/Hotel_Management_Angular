@@ -42,6 +42,14 @@ export class HotelService {
     });
   }
 
+  updateBooking(room_id: any, bookingData: any): Observable<any> {
+    console.log(room_id, bookingData);
+    return this.http.put('http://localhost:8000/room/updateBooking', {
+      id: room_id,
+      dates: bookingData,
+    });
+  }
+
   createRoom(room: any) {
     return this.http.post('http://localhost:8000/room/add', room);
   }

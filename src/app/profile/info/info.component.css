@@ -1,0 +1,23 @@
+.user-info .profile-pic img {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+}
+
+.form-container {
+  max-width: 500px;
+}
+
+form {
+  width: 100%;
+}
+
+input {
+  background-color: #111827 !important;
+  border-color: rgb(128, 137, 144);
+  border-radius: 10px !important;
+  color: white !important;
+}
+button {
+  border-radius: 25px;
+}

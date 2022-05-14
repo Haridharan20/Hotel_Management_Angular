@@ -8,7 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 export class RoomComponent implements OnInit {
   @Input() value!: any;
   @Input() hotel!: any;
+  @Input() in!: any;
+  @Input() out!: any;
   constructor() {}
 
   ngOnInit(): void {}
+
+  check() {
+    console.log('check');
+  }
 }

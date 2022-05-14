@@ -1,5 +1,6 @@
 <a
-  [routerLink]="['/roomDetail', hotel?.name, value?._id]"
+  [routerLink]="['/roomDetail/' + hotel?.name + '/' + value?._id]"
+  [queryParams]="{ checkin: in, checkOut: out }"
   class="text-decoration-none"
 >
   <div class="col-12 mb-2">
@@ -84,6 +85,9 @@
               <p class="m-0">+7363 Tax price</p>
             </div>
           </div>
+          <button class="btn btn-primary mt-4" (click)="check()">
+            Details
+          </button>
           <!-- <div>
             <h6>location: {{ hotel?.address }}</h6>
             <p class="text-start">Contact: {{ hotel?.contact_no }}</p>

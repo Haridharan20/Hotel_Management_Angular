@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardGuard } from './Auth/auth-guard.guard';
 import { HotelDetailComponent } from './component/hotel-detail/hotel-detail.component';
 import { LoginComponent } from './component/login/login.component';
-import { ProfileComponent } from './component/profile/profile.component';
 import { RegisterComponent } from './component/register/register.component';
 import { RoomDetailComponent } from './component/room-detail/room-detail.component';
 import { WelcomeComponent } from './component/welcome/welcome.component';
@@ -33,7 +32,9 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    component: ProfileComponent,
+    // component: ProfileComponent,
+    loadChildren: () =>
+      import('./profile/profile.module').then((module) => module.ProfileModule),
     canActivate: [AuthGuardGuard],
   },
   {

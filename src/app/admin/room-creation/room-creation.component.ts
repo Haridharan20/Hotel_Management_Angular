@@ -20,23 +20,17 @@ export class RoomCreationComponent implements OnInit {
   createRoom = this.form.group({
     roomtype: ['', Validators.required],
     capacity: ['', Validators.required],
-    from: ['', Validators.required],
-    to: ['', Validators.required],
     price: ['', Validators.required],
   });
 
   onSubmit() {
     let hotel_id = this.route.snapshot.paramMap.get('id');
-    const { roomtype, capacity, from, to, price } = this.createRoom.value;
+    const { roomtype, capacity, price } = this.createRoom.value;
     let room = {
       hotel_id,
       roomtype,
       capacity,
       price,
-      dates: {
-        from,
-        to,
-      },
     };
     let roomId!: string;
     this.hotelService.createRoom(room).subscribe(async (result: any) => {

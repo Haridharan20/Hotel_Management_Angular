@@ -18,7 +18,7 @@ const RoomSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
-    dates: {
+    bookings: {
       type: [Object],
       required: true,
     },
