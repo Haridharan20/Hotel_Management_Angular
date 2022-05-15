@@ -83,7 +83,6 @@
           <a
             [routerLink]="['/hotelDetail', hotel._id]"
             [ngClass]="{ disabled: hotel.rooms.length == 0 ? true : false }"
-            (click)="sendDetails(hotel)"
           >
             <img src="{{ hotel.images[0] }}" alt="" class="card-img-top" />
             <div class="card-body">

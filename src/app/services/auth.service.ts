@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -37,20 +33,27 @@ export class AuthService {
     });
   }
 
-  getProfile() {
-    return this.http.get('http://localhost:8000/user/profile');
-  }
+  // getProfile() {
+  //   return this.http.get('http://localhost:8000/user/profile');
+  // }
 
-  addMyBooking(bookingData: any) {
-    console.log('Bookinng', bookingData);
-    return this.http.post('http://localhost:8000/user/myBooking', bookingData);
-  }
+  // addMyBooking(bookingData: any) {
+  //   console.log('Bookinng', bookingData);
+  //   return this.http.post('http://localhost:8000/user/myBooking', bookingData);
+  // }
 
-  storeUserData(token: string, name: string, uid: string, refresh: string) {
+  storeUserData(
+    token: string,
+    name: string,
+    uid: string,
+    refresh: string,
+    isAdmin: string
+  ) {
     localStorage.setItem('token', token);
     localStorage.setItem('refresh', refresh);
     localStorage.setItem('user', name);
     localStorage.setItem('uid', uid);
+    localStorage.setItem('admin', isAdmin);
     this.authToken = token;
     this.user = name;
   }
@@ -62,6 +65,7 @@ export class AuthService {
     localStorage.removeItem('user');
     localStorage.removeItem('refresh');
     localStorage.removeItem('uid');
+    localStorage.removeItem('admin');
   }
 
   loggedIn() {
@@ -69,6 +73,15 @@ export class AuthService {
     const isExpire = new JwtHelperService();
     let localToken = localStorage.getItem('refresh') || '';
     return isExpire.isTokenExpired(localToken);
+  }
+
+  isAdmin() {
+    let val = localStorage.getItem('admin') || 'no';
+    if (val === 'true') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   getJwtToken() {

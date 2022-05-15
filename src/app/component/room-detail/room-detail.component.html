@@ -153,7 +153,8 @@
       <div class="head d-flex justify-content-between">
         <h4>&#x20B9;{{ room.price }}/night</h4>
         <span>
-          <i class="fa-solid fa-star">4.5(112)</i>
+          <i class="fa-solid fa-star text-warning"> </i>
+          <span> 4.5(112) </span>
         </span>
       </div>
       <div class="checkdetails mt-4 row justify-content-between p-3">
@@ -167,6 +168,7 @@
                 <input
                   type="date"
                   class="bg-transparent text-white border-0"
+                  min="{{ today }}"
                   [(ngModel)]="checkin"
                   value="{{ checkin }}"
                 />
@@ -179,6 +181,7 @@
                 <input
                   type="date"
                   class="bg-transparent text-white border-0"
+                  min="{{ today }}"
                   [(ngModel)]="checkout"
                   (change)="calculateNight()"
                 />

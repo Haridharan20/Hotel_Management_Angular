@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container roomCreation">
   <form [formGroup]="createRoom" (ngSubmit)="onSubmit()">
     <div class="form-group mb-4">
       <label for="RoomType">RoomType</label>
@@ -6,7 +6,7 @@
         type="text"
         name="roomtype"
         id="RoomType"
-        class="form-control"
+        class="form-control bg-transparent"
         formControlName="roomtype"
       />
     </div>
@@ -17,7 +17,7 @@
         type="number"
         name="capacity"
         id="Capacity"
-        class="form-control"
+        class="form-control bg-transparent"
         formControlName="capacity"
       />
     </div>
@@ -27,7 +27,7 @@
         type="text"
         name="price"
         id="Price"
-        class="form-control"
+        class="form-control bg-transparent"
         formControlName="price"
       />
     </div>

@@ -23,7 +23,9 @@ export class HotelCreationComponent implements OnInit {
   onSubmit() {
     const { hotelname, address, city, state, zip, phone } =
       this.creationForm.value;
+    let admin_id = localStorage.getItem('uid');
     let hotel = {
+      admin_id,
       hotelname,
       address,
       city,

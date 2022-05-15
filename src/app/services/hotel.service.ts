@@ -53,4 +53,15 @@ export class HotelService {
   createRoom(room: any) {
     return this.http.post('http://localhost:8000/room/add', room);
   }
+
+  cancelBooking(data: any) {
+    console.log(data);
+    return this.http.post('http://localhost:8000/room/cancelBooking', data);
+  }
+  // Admin Hotel
+  getHotelByAdmin(admin: any) {
+    return this.http.get(
+      `http://localhost:8000/hotel/getHotelByAdmin/${admin}`
+    );
+  }
 }

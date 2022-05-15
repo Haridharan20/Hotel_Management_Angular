@@ -5,5 +5,6 @@ router.post("/add", roomController.addRoom);
 router.put("/updateBooking", roomController.updateBooking);
 router.get("/getRooms/:id", roomController.getRooms);
 router.get("/getRoom/:id", roomController.getRoom);
+router.post("/cancelBooking", roomController.cancelBooking);
 
 module.exports = router;

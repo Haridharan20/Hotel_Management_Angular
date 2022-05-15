@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
     if (!this.service.loggedIn()) {
       this.userName = localStorage.getItem('user') || '';
     }
+    console.log(this.service.isAdmin());
   }
 
   onLogout() {

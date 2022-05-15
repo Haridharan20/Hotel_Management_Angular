@@ -18,6 +18,8 @@ export class HotelDetailComponent implements OnInit {
   filterString = '';
   hotelDetails!: any;
   checkArr: any = [];
+  today = new Date().toISOString().split('T')[0];
+
   constructor(
     private form: FormBuilder,
     private route: ActivatedRoute,

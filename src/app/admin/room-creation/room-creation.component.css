@@ -1,0 +1,10 @@
+input {
+  background-color: #111827 !important;
+  border-color: rgb(128, 137, 144);
+  border-radius: 10px !important;
+  color: white !important;
+}
+
+.roomCreation {
+  max-width: 600px;
+}

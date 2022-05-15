@@ -38,7 +38,8 @@ export class LoginComponent implements OnInit {
           result.token,
           result.data.name,
           result.data._id,
-          result.refresh
+          result.refresh,
+          result.data.isAdmin
         );
         this.toastr.success(result.msg, '', {
           timeOut: 2000,

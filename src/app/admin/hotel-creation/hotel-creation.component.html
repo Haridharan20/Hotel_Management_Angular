@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container hotelCreation">
   <form [formGroup]="creationForm" (ngSubmit)="onSubmit()">
     <div class="form-group mb-4">
       <label for="HotelName">HotelName</label>
@@ -6,7 +6,7 @@
         type="text"
         name="hotelname"
         id="HotelName"
-        class="form-control"
+        class="form-control bg-transparent"
         formControlName="hotelname"
       />
     </div>
@@ -16,7 +16,7 @@
         type="text"
         name="address"
         id="Address"
-        class="form-control"
+        class="form-control bg-transparent"
         formControlName="address"
       />
     </div>
@@ -25,7 +25,7 @@
         <label for="City">City</label>
         <input
           type="text"
-          class="form-control"
+          class="form-control bg-transparent"
           id="City"
           formControlName="city"
           name="city"
@@ -37,7 +37,7 @@
 
         <input
           type="text"
-          class="form-control"
+          class="form-control bg-transparent"
           id="State"
           formControlName="state"
           placeholder="State"
@@ -47,7 +47,7 @@
         <label for="Zip">Pincode</label>
         <input
           type="text"
-          class="form-control"
+          class="form-control bg-transparent"
           id="Zip"
           formControlName="zip"
           placeholder="Zip"
@@ -60,7 +60,7 @@
         type="text"
         name="phone"
         id="Phone"
-        class="form-control"
+        class="form-control bg-transparent"
         formControlName="phone"
       />
     </div>

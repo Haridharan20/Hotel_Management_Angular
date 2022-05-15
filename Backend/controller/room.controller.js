@@ -58,5 +58,29 @@ const roomController = {
       }
     );
   },
+
+  cancelBooking: (req, res) => {
+    console.log(req.body);
+    RoomModel.updateOne(
+      { _id: req.body.roomId },
+      {
+        $pull: {
+          bookings: {
+            from: req.body.from,
+            to: req.body.to,
+            user: req.body.userId,
+          },
+        },
+      },
+      function (err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          console.log(result);
+          res.send(result);
+        }
+      }
+    );
+  },
 };
 module.exports = roomController;

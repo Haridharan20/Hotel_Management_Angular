@@ -6,6 +6,11 @@ const HotelSchema = mongoose.Schema({
     required: true,
   },
 
+  admin_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+
   address: {
     type: String,
     rquired: true,

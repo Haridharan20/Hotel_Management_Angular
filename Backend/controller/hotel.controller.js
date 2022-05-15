@@ -3,8 +3,9 @@ const HotelModel = require("../model/hotel.model");
 const hotelController = {
   add: (req, res) => {
     console.log(req);
-    const { hotelname, address, city, state, zip, phone } = req.body;
+    const { admin_id, hotelname, address, city, state, zip, phone } = req.body;
     const model = new HotelModel({
+      admin_id,
       name: hotelname,
       address,
       city,
@@ -52,6 +53,17 @@ const hotelController = {
         }
       }
     );
+  },
+
+  getHotelByAdmin: (req, res) => {
+    console.log(req.params.id);
+    HotelModel.find({ admin_id: req.params.id })
+      .then((result) => {
+        res.json(result);
+      })
+      .catch((err) => {
+        res.json({ msg: "No Hotels are available" });
+      });
   },
 
   HotelByCity: (req, res) => {

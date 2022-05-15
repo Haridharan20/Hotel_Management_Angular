@@ -33,6 +33,7 @@
               type="date"
               placeholder="Check in"
               class="bg-transparent border-0"
+              min="{{ today }}"
               (change)="chooseInDate($event)"
             />
             <br />
@@ -50,6 +51,7 @@
               type="date"
               placeholder="Check out"
               class="bg-transparent border-0"
+              min="{{ today }}"
               (change)="chooseOutDate($event)"
             />
             <br />

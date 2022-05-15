@@ -9,7 +9,7 @@ import { RegisterComponent } from './component/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-import { AuthGuardGuard } from './Auth/auth-guard.guard';
+import { AuthGuardGuard } from './Guard/Auth/auth-guard.guard';
 import { AuthService } from './services/auth.service';
 import { WelcomeComponent } from './component/welcome/welcome.component';
 import { HotelDetailComponent } from './component/hotel-detail/hotel-detail.component';

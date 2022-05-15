@@ -11,9 +11,12 @@ export class MyHotelComponent implements OnInit {
   constructor(private hotelService: HotelService) {}
 
   ngOnInit(): void {
-    this.hotelService.getAllHotel().subscribe((result) => {
-      this.hotelArr = result;
-      console.log('arr', this.hotelArr);
+    let admin = localStorage.getItem('uid');
+    console.log(admin);
+    this.hotelService.getHotelByAdmin(admin).subscribe({
+      next: (result: any) => {
+        this.hotelArr = result;
+      },
     });
   }
 }

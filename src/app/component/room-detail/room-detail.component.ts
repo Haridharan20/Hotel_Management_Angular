@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { HotelService } from 'src/app/services/hotel.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-room-detail',
@@ -18,12 +19,14 @@ export class RoomDetailComponent implements OnInit {
   currentDate: any = new Date();
   checkin: any;
   checkout: any;
+  today = new Date().toISOString().split('T')[0];
 
   constructor(
     private hotelService: HotelService,
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
+    private userService: UserService,
     private toastr: ToastrService
   ) {
     this.route.params.subscribe((val) => {
@@ -57,16 +60,12 @@ export class RoomDetailComponent implements OnInit {
 
   bookRoom(type: string, price: any, nights: any) {
     if (!this.checkAvail()) {
-      this.toastr.error('No Rooms are available on the date', '', {
-        timeOut: 2000,
-        progressBar: true,
-        progressAnimation: 'decreasing',
-      });
       return;
     }
     if (!this.authService.loggedIn()) {
       const bookingData = {
         Hotelname: this.name,
+        roomId: this.roomId,
         RoomType: type,
         Date: {
           from: this.checkin,
@@ -87,7 +86,7 @@ export class RoomDetailComponent implements OnInit {
             console.log(res);
           },
         });
-      this.authService.addMyBooking(bookingData).subscribe({
+      this.userService.addMyBooking(bookingData).subscribe({
         next: (request: any) => {
           console.log('request');
           this.toastr.success('Booking successfully', '', {
@@ -95,7 +94,6 @@ export class RoomDetailComponent implements OnInit {
             progressBar: true,
             progressAnimation: 'decreasing',
           });
-          this.router.navigate(['/login']);
         },
       });
     } else {
@@ -109,6 +107,22 @@ export class RoomDetailComponent implements OnInit {
   }
 
   checkAvail(): boolean {
+    if (this.checkout == undefined || this.checkin == undefined) {
+      this.toastr.error('Enter checkIn or checkOut Date', '', {
+        timeOut: 2000,
+        progressBar: true,
+        progressAnimation: 'decreasing',
+      });
+      return false;
+    }
+    if (new Date(this.checkout).getTime() <= new Date(this.checkin).getTime()) {
+      this.toastr.error('Enter valid checkOut Date', '', {
+        timeOut: 2000,
+        progressBar: true,
+        progressAnimation: 'decreasing',
+      });
+      return false;
+    }
     console.log('avail');
     let flag = 1;
     this.room.bookings.forEach((date: any) => {
@@ -130,6 +144,11 @@ export class RoomDetailComponent implements OnInit {
     if (flag == 1) {
       return true;
     } else {
+      this.toastr.error('No Rooms are available on the date', '', {
+        timeOut: 2000,
+        progressBar: true,
+        progressAnimation: 'decreasing',
+      });
       return false;
     }
   }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ComponentService } from 'src/app/services/component.service';
 import { HotelService } from 'src/app/services/hotel.service';
 
 @Component({
@@ -15,11 +14,7 @@ export class WelcomeComponent implements OnInit {
   condition = true;
   disablehotel = false;
 
-  constructor(
-    private form: FormBuilder,
-    private hotelService: HotelService,
-    private componentService: ComponentService
-  ) {}
+  constructor(private form: FormBuilder, private hotelService: HotelService) {}
 
   ngOnInit(): void {}
   searchForm = this.form.group({
@@ -36,14 +31,6 @@ export class WelcomeComponent implements OnInit {
       this.filteredHotels = result;
     });
   }
-
-  sendDetails(hotel: any) {
-    this.componentService.sendMessage(hotel);
-  }
-
-  // filterByStar(event: any) {
-  //   console.log((<HTMLInputElement>event.target).value);
-  // }
 
   filterName(event: any) {
     this.filtername = (<HTMLInputElement>event.target).value;

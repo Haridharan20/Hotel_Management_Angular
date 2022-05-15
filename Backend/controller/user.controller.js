@@ -48,7 +48,7 @@ const userController = {
       } else {
         const token = await jwt.generateAccessToken(user.email);
         const refreshtoken = await jwt.generateRefreshToken(user.email);
-        console.log("token", token);
+        // console.log("token", token);
         res.json({
           success: true,
           msg: "Logged success",
@@ -80,6 +80,29 @@ const userController = {
     UserModel.updateOne(
       { email: req.data.email },
       { $push: { myBookings: req.body } },
+      function (err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send(result);
+        }
+      }
+    );
+  },
+
+  updateMyBooking: (req, res) => {
+    console.log(req.body);
+    UserModel.updateOne(
+      { _id: req.body.userId },
+      {
+        $pull: {
+          myBookings: {
+            roomId: req.body.roomId,
+            bookedOn: req.body.bookingDate,
+            Date: { from: req.body.from, to: req.body.to },
+          },
+        },
+      },
       function (err, result) {
         if (err) {
           res.send(err);

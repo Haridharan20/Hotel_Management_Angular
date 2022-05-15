@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-info',
@@ -9,7 +10,10 @@ import { AuthService } from 'src/app/services/auth.service';
 export class InfoComponent implements OnInit {
   User!: any;
 
-  constructor(private userService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     console.log('init');
