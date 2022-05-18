@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HotelService } from 'src/app/services/hotel.service';
 
@@ -10,10 +10,11 @@ import { HotelService } from 'src/app/services/hotel.service';
 export class WelcomeComponent implements OnInit {
   searchRating!: '';
   filtername: string = '';
-  filteredHotels: any[] = [];
+  filteredHotels!: any;
   condition = true;
   disablehotel = false;
 
+  @ViewChild('view') viewEle: ElementRef | null = null;
   constructor(private form: FormBuilder, private hotelService: HotelService) {}
 
   ngOnInit(): void {}
@@ -29,6 +30,10 @@ export class WelcomeComponent implements OnInit {
     this.hotelService.getHotelByCity(city).subscribe((result: any) => {
       console.log(result);
       this.filteredHotels = result;
+    });
+    this.viewEle?.nativeElement.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
     });
   }
 

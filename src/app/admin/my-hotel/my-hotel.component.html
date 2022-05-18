@@ -1,22 +1,42 @@
-<div class="container">
-  <div class="row">
-    <div class="col-4" *ngFor="let hotel of hotelArr">
-      <div class="card shadow">
+<div class="row py-5">
+  <h3>My Hotels</h3>
+  <div *ngIf="hotelArr.length == 0; else trueBlock">
+    <h2 class="mt-1">No Hotels Found</h2>
+    <a class="btn btn-primary" [routerLink]="['/admin/createHotel']"
+      >Create Hotel</a
+    >
+  </div>
+  <ng-template #trueBlock>
+    <div class="col-12 col-md-4" *ngFor="let hotel of hotelArr">
+      <div class="card">
         <img
           src="https://images.unsplash.com/photo-1517840901100-8179e982acb7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWx8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
           class="card-img-top img-fluid"
           alt="..."
         />
-        <div class="card-body">
-          <h5 class="card-title">{{ hotel.name }}</h5>
-          <p class="card-text">{{ hotel.address }}</p>
-          <a
-            class="btn btn-primary"
-            [routerLink]="['/admin/createRoom', hotel._id]"
-            >CreateRoom</a
-          >
+        <div class="card-body text-start">
+          <h4>{{ hotel.name }}</h4>
+          <h5>{{ hotel.address }}</h5>
+          <div class="d-flex justify-content-between">
+            <a
+              class="btn btn-sm btn-warning"
+              [routerLink]="['/admin/editHotel', hotel._id]"
+              >Edit Hotel</a
+            >
+            <button
+              class="btn btn-sm btn-danger"
+              (click)="deleteHotel(hotel._id)"
+            >
+              Delete Hotel
+            </button>
+          </div>
+          <!-- <a
+          class="btn btn-primary"
+          [routerLink]="['/admin/createRoom', hotel._id]"
+          >CreateRoom</a
+        > -->
         </div>
       </div>
     </div>
-  </div>
+  </ng-template>
 </div>

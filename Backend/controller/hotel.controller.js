@@ -55,6 +55,36 @@ const hotelController = {
     );
   },
 
+  deleteHotel: (req, res) => {
+    HotelModel.findByIdAndRemove(req.params.id, (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json({ msg: "Hotel Deleted Successfully" });
+      }
+    });
+  },
+
+  deleteRoomFromHotel: (req, res) => {
+    console.log(req.body);
+    HotelModel.updateOne(
+      { _id: req.body.hotelId },
+      {
+        $pull: {
+          rooms: req.body.roomId,
+        },
+      },
+      function (err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          console.log(result);
+          res.send(result);
+        }
+      }
+    );
+  },
+
   getHotelByAdmin: (req, res) => {
     console.log(req.params.id);
     HotelModel.find({ admin_id: req.params.id })

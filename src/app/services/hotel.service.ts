@@ -54,6 +54,30 @@ export class HotelService {
     return this.http.post('http://localhost:8000/room/add', room);
   }
 
+  deleteRoom(id: any) {
+    console.log(id);
+    return this.http.delete(`http://localhost:8000/room/delete/${id}`);
+  }
+
+  deleteAllRooms(id: any) {
+    return this.http.delete(`http://localhost:8000/room/deleteAll/${id}`);
+  }
+
+  deleteRoomFromHotel(hotelId: any, roomId: any) {
+    return this.http.put('http://localhost:8000/hotel/deleteRoom', {
+      hotelId,
+      roomId,
+    });
+  }
+
+  updateRoom(id: any, data: any) {
+    return this.http.put(`http://localhost:8000/room/updateRoom/${id}`, data);
+  }
+
+  deleteHotel(id: any) {
+    return this.http.delete(`http://localhost:8000/hotel/delete/${id}`);
+  }
+
   cancelBooking(data: any) {
     console.log(data);
     return this.http.post('http://localhost:8000/room/cancelBooking', data);

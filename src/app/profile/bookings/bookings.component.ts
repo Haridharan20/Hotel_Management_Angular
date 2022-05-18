@@ -64,7 +64,7 @@ export class BookingsComponent implements OnInit {
     });
 
     this.toastr.success('Cancel successfully', '', {
-      timeOut: 2000,
+      timeOut: 1000,
       progressBar: true,
       progressAnimation: 'decreasing',
     });

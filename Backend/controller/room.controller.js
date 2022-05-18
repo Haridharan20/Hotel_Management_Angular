@@ -59,6 +59,49 @@ const roomController = {
     );
   },
 
+  updateRoom: (req, res) => {
+    console.log(req.params.id);
+    console.log(req.body);
+    RoomModel.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        roomtype: req.body.roomtype,
+        capacity: req.body.capacity,
+        price: req.body.price,
+      },
+      null,
+      (err, docs) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.json({ msg: "Update Successfully" });
+        }
+      }
+    );
+  },
+
+  deleteRoom: (req, res) => {
+    console.log("delete");
+    console.log(req.params);
+    RoomModel.findByIdAndDelete(req.params.id, (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json({ msg: "Deleted Successfully" });
+      }
+    });
+  },
+
+  deleteAllRooms: (req, res) => {
+    RoomModel.deleteMany({ hotel_id: req.params.id })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+
   cancelBooking: (req, res) => {
     console.log(req.body);
     RoomModel.updateOne(

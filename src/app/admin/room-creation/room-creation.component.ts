@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HotelService } from 'src/app/services/hotel.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class RoomCreationComponent implements OnInit {
   constructor(
     private form: FormBuilder,
     private route: ActivatedRoute,
+    private router: Router,
     private hotelService: HotelService
   ) {}
 
@@ -41,6 +42,7 @@ export class RoomCreationComponent implements OnInit {
         .subscribe((result: any) => {
           console.log('update', result);
         });
+      this.router.navigate([`/admin/editHotel/${hotel_id}`]);
       // console.log(roomId);
     });
   }

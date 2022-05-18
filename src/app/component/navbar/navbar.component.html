@@ -85,9 +85,7 @@
           <a class="nav-link" routerLink="/contact">Contact us </a>
         </li>
         <li *ngIf="service.isAdmin() && !service.loggedIn()">
-          <a class="dropdown-item" routerLink="/admin/createHotel"
-            >CreateHotel</a
-          >
+          <a class="nav-link" routerLink="/admin/createHotel">CreateHotel</a>
         </li>
 
         <li class="nav-item dropdown d-none d-lg-block">

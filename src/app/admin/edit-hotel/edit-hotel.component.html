@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div *ngIf="rooms.length == 0; else trueBlock">
+      <h2 class="mt-1">No Rooms Found</h2>
+      <a
+        class="btn btn-sm btn-primary"
+        [routerLink]="['/admin/createRoom', hotelId]"
+        >create Room</a
+      >
+    </div>
+    <ng-template #trueBlock>
+      <div class="text-center mb-3">
+        <a
+          class="btn btn-sm btn-primary"
+          [routerLink]="['/admin/createRoom', hotelId]"
+          >create Room</a
+        >
+      </div>
+      <div class="col-12 col-md-4" *ngFor="let room of rooms">
+        <div class="card">
+          <img
+            src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aG90ZWwlMjByb29tfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+            class="card-img-top img-fluid"
+            alt="..."
+          />
+          <div class="card-body text-start bg-transparent">
+            <h4>RoomType: {{ room.roomtype }}</h4>
+            <h5>Room Capacity: {{ room.capacity }}</h5>
+            <h5>Price: {{ room.price }}</h5>
+            <div class="d-flex justify-content-between">
+              <a
+                class="btn btn-sm btn-warning"
+                [routerLink]="['/admin/editRoom/', room._id]"
+                >Edit Room</a
+              >
+              <a class="btn btn-sm btn-danger" (click)="deleteRoom(room._id)"
+                >Delete Room</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

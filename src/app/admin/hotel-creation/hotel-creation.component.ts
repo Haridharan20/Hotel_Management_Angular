@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { HotelService } from 'src/app/services/hotel.service';
 
 @Component({
@@ -8,7 +10,12 @@ import { HotelService } from 'src/app/services/hotel.service';
   styleUrls: ['./hotel-creation.component.css'],
 })
 export class HotelCreationComponent implements OnInit {
-  constructor(private form: FormBuilder, private hotelService: HotelService) {}
+  constructor(
+    private form: FormBuilder,
+    private hotelService: HotelService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {}
   creationForm = this.form.group({
@@ -28,17 +35,28 @@ export class HotelCreationComponent implements OnInit {
       admin_id,
       hotelname,
       address,
-      city,
+      city: city.toLowerCase(),
       state,
       zip,
       phone,
     };
+    console.log(hotel);
     this.hotelService.createHotel(hotel).subscribe({
       next: (res) => {
         {
           console.log(res);
         }
       },
+    });
+    this.toastr.success('Hotel created successfully', '', {
+      timeOut: 1000,
+      progressBar: true,
+      progressAnimation: 'decreasing',
+    });
+    this.router.navigate(['/profile/myHotels']).then(() => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     });
   }
 }

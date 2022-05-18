@@ -90,9 +90,14 @@ export class RoomDetailComponent implements OnInit {
         next: (request: any) => {
           console.log('request');
           this.toastr.success('Booking successfully', '', {
-            timeOut: 2000,
+            timeOut: 1000,
             progressBar: true,
             progressAnimation: 'decreasing',
+          });
+          this.router.navigate(['/profile/booking']).then(() => {
+            setTimeout(() => {
+              window.location.reload();
+            }, 1000);
           });
         },
       });

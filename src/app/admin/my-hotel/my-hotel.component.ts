@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { HotelService } from 'src/app/services/hotel.service';
 
 @Component({
@@ -8,7 +10,11 @@ import { HotelService } from 'src/app/services/hotel.service';
 })
 export class MyHotelComponent implements OnInit {
   hotelArr: any[] = [];
-  constructor(private hotelService: HotelService) {}
+  constructor(
+    private hotelService: HotelService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     let admin = localStorage.getItem('uid');
@@ -17,6 +23,29 @@ export class MyHotelComponent implements OnInit {
       next: (result: any) => {
         this.hotelArr = result;
       },
+    });
+  }
+
+  deleteHotel(id: any) {
+    this.hotelService.deleteHotel(id).subscribe({
+      next: (result: any) => {
+        console.log(result);
+      },
+    });
+    this.hotelService.deleteAllRooms(id).subscribe({
+      next: (result: any) => {
+        console.log(result);
+      },
+    });
+    this.toastr.success('Hotel Deleted successfully', '', {
+      timeOut: 1000,
+      progressBar: true,
+      progressAnimation: 'decreasing',
+    });
+    this.router.navigate(['/profile/myHotels']).then(() => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     });
   }
 }

@@ -27,9 +27,9 @@ export class AdminGuardGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.service.isAdmin() && !this.service.loggedIn()) {
+    if (this.service.isAdmin()) {
       return true;
-    } else if (!this.service.isAdmin() && !this.service.loggedIn()) {
+    } else if (!this.service.isAdmin()) {
       this.toastr.error('You are not an admin', '', {
         timeOut: 2000,
         progressBar: true,
