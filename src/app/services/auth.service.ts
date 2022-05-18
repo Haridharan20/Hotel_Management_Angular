@@ -32,16 +32,6 @@ export class AuthService {
       password,
     });
   }
-
-  // getProfile() {
-  //   return this.http.get('http://localhost:8000/user/profile');
-  // }
-
-  // addMyBooking(bookingData: any) {
-  //   console.log('Bookinng', bookingData);
-  //   return this.http.post('http://localhost:8000/user/myBooking', bookingData);
-  // }
-
   storeUserData(
     token: string,
     name: string,

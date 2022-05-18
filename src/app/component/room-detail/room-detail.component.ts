@@ -164,9 +164,9 @@ export class RoomDetailComponent implements OnInit {
     b_start: any,
     b_end: any
   ): boolean {
-    if (a_start <= b_start && b_start <= a_end) return true; // b starts in a
-    if (a_start <= b_end && b_end <= a_end) return true; // b ends in a
-    if (b_start < a_start && a_end < b_end) return true; // a in b
+    if (a_start <= b_start && b_start <= a_end) return true;
+    if (a_start <= b_end && b_end <= a_end) return true;
+    if (b_start < a_start && a_end < b_end) return true;
     return false;
   }
 }

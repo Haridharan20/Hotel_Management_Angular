@@ -10,7 +10,7 @@ import { HotelService } from 'src/app/services/hotel.service';
 export class WelcomeComponent implements OnInit {
   searchRating!: '';
   filtername: string = '';
-  filteredHotels!: any;
+  filteredHotels: any[] = [];
   condition = true;
   disablehotel = false;
 
@@ -39,5 +39,12 @@ export class WelcomeComponent implements OnInit {
 
   filterName(event: any) {
     this.filtername = (<HTMLInputElement>event.target).value;
+  }
+
+  call() {
+    this.viewEle?.nativeElement.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
   }
 }

@@ -45,6 +45,16 @@ body {
   font-size: 18px;
 }
 
+.password-group {
+  position: relative;
+}
+
+.password-group i {
+  position: absolute;
+  top: 42px;
+  right: 30px;
+}
+
 @media screen and (max-width: 991px) {
   .navbar-dark .navbar-toggler {
     color: transparent;

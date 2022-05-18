@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   password!: string;
   email!: string;
   phonenumber!: string;
+  showpass = false;
   emailPattern =
     '^([a-z0-9\\.\\-]+)@([a-zA-z]+)(\\.[a-zA-z]{2,4})(\\.[a-zA-z]{2,4})?$';
   passwordPattern = '([A-Z]+)([a-z]+)([@$%&]+)([0-9]+)';
@@ -71,5 +72,9 @@ export class RegisterComponent implements OnInit {
           });
         },
       });
+  }
+
+  show() {
+    this.showpass = !this.showpass;
   }
 }

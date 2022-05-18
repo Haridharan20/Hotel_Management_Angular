@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
   username!: string;
   password!: string;
+  showpass = false;
   emailPattern =
     '^([a-z0-9\\.\\-]+)@([a-zA-z]+)(\\.[a-zA-z]{2,4})(\\.[a-zA-z]{2,4})?$';
   constructor(
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
           result.refresh,
           result.data.isAdmin
         );
+        console.log(result.msg);
         this.toastr.success(result.msg, '', {
           timeOut: 2000,
           progressBar: true,
@@ -57,5 +59,8 @@ export class LoginComponent implements OnInit {
         });
       },
     });
+  }
+  show() {
+    this.showpass = !this.showpass;
   }
 }
