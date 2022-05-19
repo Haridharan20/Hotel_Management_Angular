@@ -52,6 +52,7 @@ a.disabled {
   #search {
     position: relative;
     top: 0px;
+    border-radius: 25px;
   }
 
   .search-top {

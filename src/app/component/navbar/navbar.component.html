@@ -106,7 +106,7 @@
         >
           <a class="nav-link" routerLink="/register">Signup</a>
         </li>
-        <li class="d-md-none" *ngIf="service.isAdmin() && !service.loggedIn()">
+        <li *ngIf="service.isAdmin() && !service.loggedIn()">
           <a class="nav-link" routerLink="/admin/createHotel">CreateHotel</a>
         </li>
 
@@ -140,11 +140,6 @@
             </li>
             <li *ngIf="!service.loggedIn()">
               <a class="dropdown-item" routerLink="/profile/info">Profile</a>
-            </li>
-            <li *ngIf="service.isAdmin() && !service.loggedIn()">
-              <a class="nav-link" routerLink="/admin/createHotel"
-                >CreateHotel</a
-              >
             </li>
             <li *ngIf="!service.loggedIn()">
               <a class="dropdown-item" routerLink="/" (click)="onLogout()"
