@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { HotelService } from 'src/app/services/hotel.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class RoomCreationComponent implements OnInit {
     private form: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private toastr: ToastrService,
     private hotelService: HotelService
   ) {}
 
@@ -41,6 +43,11 @@ export class RoomCreationComponent implements OnInit {
         .updateHotel(hotel_id, roomId)
         .subscribe((result: any) => {
           console.log('update', result);
+          this.toastr.success('Room Created successfully', '', {
+            timeOut: 1000,
+            progressBar: true,
+            progressAnimation: 'decreasing',
+          });
         });
       this.router.navigate([`/admin/editHotel/${hotel_id}`]);
       // console.log(roomId);

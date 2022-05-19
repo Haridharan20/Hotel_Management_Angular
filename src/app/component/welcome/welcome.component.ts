@@ -30,10 +30,7 @@ export class WelcomeComponent implements OnInit {
     this.hotelService.getHotelByCity(city).subscribe((result: any) => {
       console.log(result);
       this.filteredHotels = result;
-    });
-    this.viewEle?.nativeElement.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
+      this.call();
     });
   }
 
@@ -42,9 +39,13 @@ export class WelcomeComponent implements OnInit {
   }
 
   call() {
-    this.viewEle?.nativeElement.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    });
+    console.log('called');
+
+    setTimeout(() => {
+      this.viewEle?.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }, 0);
   }
 }

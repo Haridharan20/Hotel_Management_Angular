@@ -51,7 +51,7 @@
         data-bs-toggle="collapse"
         data-bs-target="#navbarContent"
       >
-        <i class="fa fa-solid fa-times text-light"></i>
+        <i class="fa-solid fa-2x fa-xmark text-light"></i>
       </span>
       <ul class="navbar-nav align-items-lg-center ms-auto mb-2 mb-lg-0">
         <li class="nav-item me-2">
@@ -76,7 +76,13 @@
         </ul>
         <hr />
         <li class="nav-item me-2">
-          <a class="nav-link" routerLink="/">Home</a>
+          <a
+            class="nav-link"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarContent"
+            routerLink="/"
+            >Home</a
+          >
         </li>
         <li class="nav-item me-2">
           <a class="nav-link" routerLink="/about">About</a>
@@ -84,7 +90,23 @@
         <li class="nav-item me-2">
           <a class="nav-link" routerLink="/contact">Contact us </a>
         </li>
-        <li *ngIf="service.isAdmin() && !service.loggedIn()">
+        <li
+          class="d-md-none"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          *ngIf="service.loggedIn()"
+        >
+          <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+        <li
+          class="d-md-none"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          *ngIf="service.loggedIn()"
+        >
+          <a class="nav-link" routerLink="/register">Signup</a>
+        </li>
+        <li class="d-md-none" *ngIf="service.isAdmin() && !service.loggedIn()">
           <a class="nav-link" routerLink="/admin/createHotel">CreateHotel</a>
         </li>
 
@@ -118,6 +140,11 @@
             </li>
             <li *ngIf="!service.loggedIn()">
               <a class="dropdown-item" routerLink="/profile/info">Profile</a>
+            </li>
+            <li *ngIf="service.isAdmin() && !service.loggedIn()">
+              <a class="nav-link" routerLink="/admin/createHotel"
+                >CreateHotel</a
+              >
             </li>
             <li *ngIf="!service.loggedIn()">
               <a class="dropdown-item" routerLink="/" (click)="onLogout()"

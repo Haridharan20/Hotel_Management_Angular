@@ -21,7 +21,7 @@
         <form [formGroup]="searchForm" (ngSubmit)="searchHotel()">
           <section
             id="search"
-            class="d-flex flex-column flex-md-row justify-content-between align-items-lg-center order-1 mb-4 mb-md-0"
+            class="d-flex flex-column flex-md-row justify-content-between align-items-lg-center order-1 mb-4 mb-md-0 mx-auto"
           >
             <div class="flex search-contain py-3 px-4" tabindex="0">
               <div class="location d-flex align-items-center">
@@ -65,7 +65,7 @@
                 [disabled]="!searchForm.valid"
               >
                 <span class="d-md-none">Search</span>
-                <i class="fa fa-solid fa-search"></i>
+                <i class="ms-2 ms-md-0 fa fa-solid fa-search"></i>
               </button>
             </div>
           </section>

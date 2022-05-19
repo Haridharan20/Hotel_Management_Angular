@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
+import { globalVars } from '../url';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -18,7 +20,7 @@ export class AuthService {
     password: string,
     phonenumber: string
   ): Observable<any> {
-    return this.http.post('http://localhost:8000/user/register', {
+    return this.http.post(`${globalVars.backendAPI}/user/register`, {
       username,
       email,
       password,
@@ -27,7 +29,7 @@ export class AuthService {
   }
   //Login
   userLogin(username: string, password: string): Observable<any> {
-    return this.http.post('http://localhost:8000/user/login', {
+    return this.http.post(`${globalVars.backendAPI}/user/login`, {
       username,
       password,
     });
