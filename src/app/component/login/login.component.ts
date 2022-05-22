@@ -48,7 +48,13 @@ export class LoginComponent implements OnInit {
           progressBar: true,
           progressAnimation: 'decreasing',
         });
-        this.router.navigate(['/']);
+        let redirectUrl = localStorage.getItem('url');
+        if (redirectUrl) {
+          this.router.navigate([redirectUrl]);
+          localStorage.removeItem('url');
+        } else {
+          this.router.navigate(['/']);
+        }
       },
       error: (err: any) => {
         console.log(err.error.msg);

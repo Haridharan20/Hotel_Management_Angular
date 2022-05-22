@@ -1,2 +1,2 @@
-let globalVars = { backendAPI: 'http://3.88.202.193:8000' };
+let globalVars = { backendAPI: 'http://13.127.203.11:8000' };
 export { globalVars };

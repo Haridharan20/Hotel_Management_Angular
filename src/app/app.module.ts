@@ -20,6 +20,7 @@ import { RoomComponent } from './component/room/room.component';
 import { RoomsharingPipe } from './pipes/roomsharing.pipe';
 import { RoomDetailComponent } from './component/room-detail/room-detail.component';
 import { InterceptorServiceService } from './interceptor/interceptor-service.service';
+import { FooterComponent } from './component/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { InterceptorServiceService } from './interceptor/interceptor-service.ser
     RoomComponent,
     RoomsharingPipe,
     RoomDetailComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

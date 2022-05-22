@@ -59,6 +59,10 @@ export class RoomDetailComponent implements OnInit {
   }
 
   bookRoom(type: string, price: any, nights: any) {
+    let url;
+    this.route.params.subscribe((val) => {
+      localStorage.setItem('url', `/roomDetail/${val['hotel']}/${val['id']}`);
+    });
     if (!this.checkAvail()) {
       return;
     }
