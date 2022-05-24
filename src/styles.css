@@ -24,7 +24,7 @@ body {
   font-size: 16px;
   color: white !important;
   background-color: #111827;
-  padding-top: 40px;
+  padding-top: 34px;
   max-width: 100%;
   min-width: 352px !important;
 }
@@ -55,6 +55,23 @@ body {
   right: 30px;
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: block;
+  width: 25px;
+  position: absolute;
+  left: 0px;
+  margin-right: 10px !important;
+  height: 25px;
+  background-color: transparent;
+}
+
+input[type="date"] {
+  text-align: end;
+}
+input[type="date"] {
+  color-scheme: dark;
+}
+
 @media screen and (max-width: 991px) {
   .navbar-dark .navbar-toggler {
     color: transparent;
@@ -79,7 +96,7 @@ body {
     position: absolute;
     top: 0;
     width: 95%;
-    height: 100vh;
+    height: 200vh;
     z-index: 1;
     transition: all 0.4s ease;
     display: block;

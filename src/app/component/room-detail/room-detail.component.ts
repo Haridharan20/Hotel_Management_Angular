@@ -21,6 +21,8 @@ export class RoomDetailComponent implements OnInit {
   checkout: any;
   today = new Date().toISOString().split('T')[0];
 
+  paymentHandler: any = null;
+
   constructor(
     private hotelService: HotelService,
     private route: ActivatedRoute,
@@ -42,6 +44,7 @@ export class RoomDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.invokeStripe();
     console.log(this.checkout);
     this.route.queryParams.subscribe((params) => {
       this.checkin = params['checkin'];
@@ -60,6 +63,7 @@ export class RoomDetailComponent implements OnInit {
 
   bookRoom(type: string, price: any, nights: any) {
     let url;
+    let totalamount;
     this.route.params.subscribe((val) => {
       localStorage.setItem('url', `/roomDetail/${val['hotel']}/${val['id']}`);
     });
@@ -67,6 +71,7 @@ export class RoomDetailComponent implements OnInit {
       return;
     }
     if (!this.authService.loggedIn()) {
+      totalamount = price * nights + 357;
       const bookingData = {
         Hotelname: this.name,
         roomId: this.roomId,
@@ -75,36 +80,11 @@ export class RoomDetailComponent implements OnInit {
           from: this.checkin,
           to: this.checkout,
         },
-        amount: price * nights + 357,
+        amount: totalamount,
         bookedOn: new Date().toLocaleDateString(),
       };
       let uid = localStorage.getItem('uid');
-      this.hotelService
-        .updateBooking(this.roomId, {
-          from: this.checkin,
-          to: this.checkout,
-          user: uid,
-        })
-        .subscribe({
-          next: (res) => {
-            console.log(res);
-          },
-        });
-      this.userService.addMyBooking(bookingData).subscribe({
-        next: (request: any) => {
-          console.log('request');
-          this.toastr.success('Booking successfully', '', {
-            timeOut: 1000,
-            progressBar: true,
-            progressAnimation: 'decreasing',
-          });
-          this.router.navigate(['/profile/booking']).then(() => {
-            setTimeout(() => {
-              window.location.reload();
-            }, 1000);
-          });
-        },
-      });
+      this.makePayment(totalamount, uid, bookingData);
     } else {
       this.toastr.warning('Login to Book', '', {
         timeOut: 2000,
@@ -172,5 +152,69 @@ export class RoomDetailComponent implements OnInit {
     if (a_start <= b_end && b_end <= a_end) return true;
     if (b_start < a_start && a_end < b_end) return true;
     return false;
+  }
+
+  makePayment(amount: any, uid: any, bookingData: any): any {
+    this.paymentHandler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_51L2UI8SH6CJX8bgna0a8MjDxwFa7iIUjVLaRBKFWSYb9kXnlSd0d4Vam1vaT4BBZGwGj11sdrsSZlp9SVnrog1eM00u3SlutCL',
+      locale: 'auto',
+      token: function (stripeToken: any) {
+        console.log(stripeToken.card.name);
+        payment(stripeToken.id, stripeToken.card.name);
+      },
+    });
+    const payment = (token: any, name: any) => {
+      this.userService.payment(token, amount * 100, name).subscribe({
+        next: (res: any) => {
+          if (res.value) {
+            this.hotelService
+              .updateBooking(this.roomId, {
+                from: this.checkin,
+                to: this.checkout,
+                user: uid,
+              })
+              .subscribe({
+                next: (res) => {
+                  console.log(res);
+                },
+              });
+            this.userService.addMyBooking(bookingData).subscribe({
+              next: (request: any) => {
+                this.toastr.success('Booking successfully', '', {
+                  timeOut: 1000,
+                  progressBar: true,
+                  progressAnimation: 'decreasing',
+                });
+                setTimeout(() => {
+                  this.router.navigate(['/profile/booking']);
+                }, 1500);
+              },
+            });
+          } else {
+            this.toastr.error('Payment Failed', '', {
+              timeOut: 2000,
+              progressBar: true,
+              progressAnimation: 'decreasing',
+            });
+          }
+        },
+      });
+    };
+
+    this.paymentHandler.open({
+      name: 'HD',
+      description: 'Payment For Room  Booking',
+      currency: 'inr',
+      amount: Number(amount) * 100,
+    });
+  }
+  invokeStripe() {
+    if (!window.document.getElementById('stripe-script')) {
+      const script = window.document.createElement('script');
+      script.id = 'stripe-script';
+      script.type = 'text/javascript';
+      script.src = 'https://checkout.stripe.com/checkout.js';
+      window.document.body.appendChild(script);
+    }
   }
 }

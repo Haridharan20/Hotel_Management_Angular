@@ -60,19 +60,20 @@ export class BookingsComponent implements OnInit {
     this.hotelService.cancelBooking(data).subscribe({
       next: (result: any) => {
         console.log(result);
+        this.toastr.success('Cancel successfully', '', {
+          timeOut: 1000,
+          progressBar: true,
+          progressAnimation: 'decreasing',
+        });
+        this.ngOnInit();
       },
     });
 
-    this.toastr.success('Cancel successfully', '', {
-      timeOut: 1000,
-      progressBar: true,
-      progressAnimation: 'decreasing',
-    });
     // this.route.navigate(['/profile/booking']);
-    this.route.navigate(['/profile/booking']).then(() => {
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
-    });
+    // this.route.navigate(['/profile/booking']).then(() => {
+    //   setTimeout(() => {
+    //     window.location.reload();
+    //   }, 1000);
+    // });
   }
 }

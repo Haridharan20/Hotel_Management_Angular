@@ -58,6 +58,7 @@ export class AuthService {
     localStorage.removeItem('refresh');
     localStorage.removeItem('uid');
     localStorage.removeItem('admin');
+    localStorage.removeItem('url');
   }
 
   loggedIn() {

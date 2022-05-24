@@ -11,7 +11,7 @@
   background-color: #374151;
   border-radius: 50px;
   position: relative;
-  top: 300px;
+  top: 250px;
 }
 #search input {
   color: white !important;
@@ -45,6 +45,8 @@
   #search {
     position: relative;
     border-radius: 15px;
+    top: 100px;
+    margin-bottom: 0;
   }
   .search_button button {
     width: 100%;

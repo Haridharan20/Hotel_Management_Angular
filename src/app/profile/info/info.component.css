@@ -12,7 +12,8 @@ form {
   width: 100%;
 }
 
-input {
+input,
+textarea {
   background-color: #111827 !important;
   border-color: rgb(128, 137, 144);
   border-radius: 10px !important;

@@ -6,11 +6,13 @@ import { InfoComponent } from './info/info.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { ProfileHomeComponent } from './profile-home/profile-home.component';
 import { ToastrModule } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [InfoComponent, BookingsComponent, ProfileHomeComponent],
   imports: [
     CommonModule,
+    FormsModule,
     ProfileRoutingModule,
     ToastrModule.forRoot({
       timeOut: 1000,

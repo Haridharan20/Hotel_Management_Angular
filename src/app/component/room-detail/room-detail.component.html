@@ -159,25 +159,23 @@
       </div>
       <div class="checkdetails mt-4 row justify-content-between p-3">
         <div class="col-12">
-          <div class="row py-4 px-2">
-            <div
-              class="col-6 d-flex align-items-center justify-content-around p-0"
-            >
-              <i class="fa-solid fa-calendar fa-2x me-1"></i>
-              <div>
+          <div
+            class="d-flex justify-content-around align-items-center py-4 px-2"
+          >
+            <div class="d-flex align-items-center p-0">
+              <div class="date-div">
                 <input
                   type="date"
                   class="bg-transparent text-white border-0"
                   min="{{ today }}"
                   [(ngModel)]="checkin"
-                  value="{{ checkin }}"
                 />
-                <span class="text-muted">Check-in </span>
+                <span class="text-muted mt-1">Check-in </span>
               </div>
             </div>
-            <div class="col-6 d-flex align-items-center cout p-0">
-              <i class="fa-solid fa-calendar fa-2x me-1"></i>
-              <div>
+            <span style="width: 3px; height: 50px" class="bg-secondary"></span>
+            <div class="d-flex align-items-center p-0 ms-2">
+              <div class="date-div">
                 <input
                   type="date"
                   class="bg-transparent text-white border-0"
@@ -185,7 +183,7 @@
                   [(ngModel)]="checkout"
                   (change)="calculateNight()"
                 />
-                <span class="text-muted">Check-out </span>
+                <span class="text-muted mt-5">Check-out </span>
               </div>
             </div>
           </div>

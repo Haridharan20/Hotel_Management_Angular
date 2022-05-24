@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class InfoComponent implements OnInit {
   User!: any;
+  name!: any;
 
   constructor(
     private authService: AuthService,
@@ -21,11 +22,17 @@ export class InfoComponent implements OnInit {
       next: (result: any) => {
         console.log(result);
         this.User = result;
-        console.log(this.User);
+        this.name = result.name;
+        console.log(this.User, this.name);
       },
       error: (err: any) => {
         console.log(err);
       },
     });
+  }
+
+  updateUserInfo(event: any) {
+    event.preventDefault();
+    console.log(event);
   }
 }

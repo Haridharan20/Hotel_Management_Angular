@@ -27,4 +27,12 @@ export class UserService {
       data
     );
   }
+
+  payment(token: any, price: any, name: any): Observable<any> {
+    return this.http.post(`${globalVars.backendAPI}/user/payment`, {
+      token,
+      price,
+      name,
+    });
+  }
 }

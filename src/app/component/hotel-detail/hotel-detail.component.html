@@ -1,10 +1,8 @@
 <div class="banner">
-  <!-- <input type="date" name="checkin" (change)="chooseInDate($event)" />
-  <input type="date" name="checkout" (change)="chooseOutDate($event)" /> -->
   <form class="container">
     <section
       id="search"
-      class="d-flex flex-column flex-md-row justify-content-between align-items-lg-center order-1 mb-4 mb-md-0"
+      class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center order-1 mb-0"
     >
       <div class="flex filter-contain py-3 px-4" tabindex="0">
         <div class="filter d-flex align-items-center">
@@ -26,9 +24,6 @@
       <div class="check_in d-flex py-3 px-4" tabindex="0">
         <div class="checkin date d-flex align-items-center">
           <div>
-            <i class="fa fa-2x fa-calendar-minus-o"></i>
-          </div>
-          <div class="ms-3">
             <input
               type="date"
               placeholder="Check in"
@@ -44,9 +39,6 @@
       <div class="check_out d-flex py-3 px-4" tabindex="0">
         <div class="checkout date d-flex align-items-center">
           <div>
-            <i class="fa fa-2x fa-calendar-minus-o"></i>
-          </div>
-          <div class="ms-3">
             <input
               type="date"
               placeholder="Check out"
@@ -61,17 +53,17 @@
       </div>
       <div class="search_button py-3 px-4" tabindex="0">
         <button type="submit" class="btn btn-primary" (click)="availHotel()">
-          <span class="d-md-none">Search</span>
-          <i class="fa fa-solid fa-search"></i>
+          <span class="d-lg-none">Search</span>
+          <i class="fa fa-solid fa-search ms-2 ms-lg-0"></i>
         </button>
       </div>
     </section>
   </form>
 </div>
 <div class="container px-md-5 mt-5">
-  <h3 class="text-center">Rooms in {{ hotelDetails?.name }}</h3>
-  <div class="row mt-5 mt-md-0">
-    <div class="col-12 main mt-5 mt-md-0">
+  <h3 class="text-center m-0 m-md-3">Rooms in {{ hotelDetails?.name }}</h3>
+  <div class="row mt-md-0">
+    <div class="col-12 main mt-md-0">
       <div class="row" *ngFor="let room of rooms | roomtype: filterString">
         <app-room
           [value]="room"

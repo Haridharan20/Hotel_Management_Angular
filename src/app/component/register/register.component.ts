@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   emailPattern =
     '^([a-z0-9\\.\\-]+)@([a-zA-z]+)(\\.[a-zA-z]{2,4})(\\.[a-zA-z]{2,4})?$';
   passwordPattern = '([A-Z]+)([a-z]+)([@$%&]+)([0-9]+)';
-  phonePattern = '(^[7-9])(\\d{9})$';
+  phonePattern = '(^[6-9])(\\d{9})$';
   constructor(
     private form: FormBuilder,
     private userService: AuthService,
