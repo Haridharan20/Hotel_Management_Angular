@@ -118,7 +118,18 @@
             role="button"
             data-bs-toggle="dropdown"
           >
-            <span>
+            <span *ngIf="!service.loggedIn()">
+              <img
+                [src]="
+                  pic != 'undefined' || service.pic != undefined
+                    ? 'http://18.234.187.122:8000/' + pic || service.pic
+                    : './assets/profile.png'
+                "
+                alt=""
+                class="img-fluid"
+              />
+            </span>
+            <span *ngIf="service.loggedIn()">
               <i class="fa fa-solid fa-user fa-2x text-white"></i>
             </span>
           </a>

@@ -12,6 +12,7 @@ import { globalVars } from '../url';
 export class AuthService {
   authToken: any;
   user: any;
+  pic: any;
   constructor(private http: HttpClient, private router: Router) {}
 
   userRegister(
@@ -39,6 +40,7 @@ export class AuthService {
     name: string,
     uid: string,
     refresh: string,
+    image: any,
     isAdmin: string
   ) {
     localStorage.setItem('token', token);
@@ -46,19 +48,23 @@ export class AuthService {
     localStorage.setItem('user', name);
     localStorage.setItem('uid', uid);
     localStorage.setItem('admin', isAdmin);
+    localStorage.setItem('pic', image?.filename);
     this.authToken = token;
     this.user = name;
+    this.pic = image?.filename;
   }
 
   logout() {
     this.authToken = null;
     this.user = null;
+    this.pic = null;
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     localStorage.removeItem('refresh');
     localStorage.removeItem('uid');
     localStorage.removeItem('admin');
     localStorage.removeItem('url');
+    localStorage.removeItem('pic');
   }
 
   loggedIn() {

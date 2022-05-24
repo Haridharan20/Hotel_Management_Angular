@@ -1,11 +1,15 @@
 <div class="user-info py-5">
   <div class="profile-pic">
     <img
-      src="https://images.unsplash.com/photo-1457449940276-e8deed18bfff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+      [src]="
+        image != undefined
+          ? 'http://18.234.187.122:8000/' + image
+          : './assets/profile.png'
+      "
       alt=""
       class="img-fluid"
     />
-    <h1>{{ User.name }}</h1>
+    <h1>{{ User?.name }}</h1>
     <div class="form-container mx-auto">
       <form class="form text-start" (ngSubmit)="updateUserInfo($event)">
         <div class="form-group mb-4">
@@ -24,7 +28,7 @@
             type="text"
             name=""
             id="email"
-            value="{{ User.email }}"
+            value="{{ User?.email }}"
             class="form-control"
             disabled
           />
@@ -35,7 +39,7 @@
             type="text"
             name=""
             id="phone"
-            value="{{ User.phone }}"
+            value="{{ User?.phone }}"
             class="form-control"
             disabled
           />
@@ -48,6 +52,8 @@
             cols="30"
             rows="1"
             class="form-control bg-transparent"
+            [(ngModel)]="address"
+            [ngModelOptions]="{ standalone: true }"
           ></textarea>
         </div>
         <div class="form-group mb-4">
@@ -55,6 +61,7 @@
             type="file"
             id="file"
             class="form-control"
+            (input)="fileChoosen($event)"
             accept="image/png,image/jpeg,image/jpg"
           />
         </div>

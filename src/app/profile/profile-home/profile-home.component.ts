@@ -8,9 +8,14 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./profile-home.component.css'],
 })
 export class ProfileHomeComponent implements OnInit {
+  pic!: any;
   constructor(public service: AuthService, private toastr: ToastrService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!this.service.loggedIn()) {
+      this.pic = localStorage.getItem('pic') || '';
+    }
+  }
 
   onLogout() {
     this.service.logout();

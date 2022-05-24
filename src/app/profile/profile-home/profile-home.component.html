@@ -1,9 +1,13 @@
 <div class="container mt-1">
   <div class="row">
     <div class="col-12 col-md-2 details p-2 sticky-md-top">
-      <div class="profile-pic">
+      <div class="profile-pic text-center">
         <img
-          src="https://images.unsplash.com/photo-1457449940276-e8deed18bfff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+          [src]="
+            pic != 'undefined'
+              ? 'http://18.234.187.122:8000/' + pic
+              : './assets/profile.png'
+          "
           alt=""
           class="img-fluid rounded"
         />
@@ -46,6 +50,7 @@
           alt=""
           class="img-fluid"
         />
+
         <h1>Welcome to dashboard</h1>
       </div>
       <router-outlet></router-outlet>

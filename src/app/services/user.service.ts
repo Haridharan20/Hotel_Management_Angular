@@ -35,4 +35,9 @@ export class UserService {
       name,
     });
   }
+
+  updateProfile(data: any) {
+    console.log(data);
+    return this.http.post(`${globalVars.backendAPI}/user/updateProfile`, data);
+  }
 }

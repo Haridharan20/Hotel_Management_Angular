@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
           result.data.name,
           result.data._id,
           result.refresh,
+          result.image,
           result.data.isAdmin
         );
         console.log(result.msg);
