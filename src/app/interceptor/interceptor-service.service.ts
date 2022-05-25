@@ -29,7 +29,7 @@ export class InterceptorServiceService implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     request = this.addToken(request, this.authService.getToken());
-    console.log('ireq', request);
+    // console.log('ireq', request);
     return next.handle(request).pipe(
       catchError((error) => {
         if (error instanceof HttpErrorResponse && error.status === 401) {
@@ -51,7 +51,7 @@ export class InterceptorServiceService implements HttpInterceptor {
         switchMap((newTokens: any) => {
           this.refresh = false;
           this.refreshTokenSubject.next(newTokens.accessToken);
-          console.log('tokenswer', newTokens);
+          // console.log('tokenswer', newTokens);
           localStorage.setItem('token', newTokens.accessToken);
           return next.handle(
             this.addToken(req, this.authService.getAccessToken())
@@ -63,7 +63,7 @@ export class InterceptorServiceService implements HttpInterceptor {
         filter((token) => token != null),
         take(1),
         switchMap((jwt) => {
-          console.log('jwt', jwt);
+          // console.log('jwt', jwt);
           return next.handle(this.addToken(req, jwt));
         })
       );

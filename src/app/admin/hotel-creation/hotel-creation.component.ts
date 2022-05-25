@@ -10,6 +10,7 @@ import { HotelService } from 'src/app/services/hotel.service';
   styleUrls: ['./hotel-creation.component.css'],
 })
 export class HotelCreationComponent implements OnInit {
+  hotelImage!: any;
   constructor(
     private form: FormBuilder,
     private hotelService: HotelService,
@@ -27,36 +28,45 @@ export class HotelCreationComponent implements OnInit {
     phone: ['', Validators.required],
   });
 
+  fileChoosen(event: any) {
+    console.log(event.target.value);
+    if (event.target.value) {
+      this.hotelImage = <File>event.target.files;
+      // console.log(this.hotelImage);
+    }
+  }
+
   onSubmit() {
     const { hotelname, address, city, state, zip, phone } =
       this.creationForm.value;
-    let admin_id = localStorage.getItem('uid');
-    let hotel = {
-      admin_id,
-      hotelname,
-      address,
-      city: city.toLowerCase(),
-      state,
-      zip,
-      phone,
-    };
-    console.log(hotel);
-    this.hotelService.createHotel(hotel).subscribe({
+    let admin_id = localStorage.getItem('uid') || '';
+
+    let fd = new FormData();
+    fd.append('admin_id', admin_id);
+    fd.append('hotelname', hotelname);
+    fd.append('address', address);
+    fd.append('city', city.toLowerCase());
+    fd.append('state', state), fd.append('zip', zip);
+    fd.append('phone', phone);
+    for (let i = 0; i < this.hotelImage.length; i++) {
+      fd.append('images', this.hotelImage[i]);
+    }
+    this.hotelService.createHotel(fd).subscribe({
       next: (res) => {
-        {
-          console.log(res);
-        }
+        this.toastr.success('Hotel created successfully', '', {
+          timeOut: 1000,
+          progressBar: true,
+          progressAnimation: 'decreasing',
+        });
+        this.router.navigate(['/profile/myHotels']);
       },
-    });
-    this.toastr.success('Hotel created successfully', '', {
-      timeOut: 1000,
-      progressBar: true,
-      progressAnimation: 'decreasing',
-    });
-    this.router.navigate(['/profile/myHotels']).then(() => {
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
+      error: (err) => {
+        this.toastr.error('Phone number already in use', '', {
+          timeOut: 1000,
+          progressBar: true,
+          progressAnimation: 'decreasing',
+        });
+      },
     });
   }
 }

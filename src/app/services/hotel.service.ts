@@ -11,7 +11,7 @@ export class HotelService {
 
   createHotel(hotel: any): Observable<any> {
     console.log(hotel);
-    return this.http.post(`${globalVars.backendAPI}/hotel/add`, hotel);
+    return this.http.post(`${globalVars.backendAPI}/hotel/addHotel`, hotel);
   }
 
   getHotel(id: any): Observable<any> {

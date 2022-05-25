@@ -9,7 +9,11 @@
         <div class="col-12 col-md-9">
           <div class="row">
             <div class="col-12 col-md-5 pic">
-              <img src="{{ value.images[0] }}" alt="" class="img-fluid" />
+              <img
+                src="http://localhost:8000/{{ value.images[0] }} "
+                alt=""
+                class="img-fluid"
+              />
             </div>
             <div
               class="col-12 col-md-7 mt-3 d-flex flex-column justify-content-between ps-md-0"
@@ -72,31 +76,27 @@
           <h6 class="d-none d-md-block free-cancel">
             Free Cancellation available
           </h6>
-          <div class="offer p-2 ms-md-auto text-center mb-1 order-1">
-            <h6 class="px-2">Daily Steal Deal</h6>
+          <div
+            class="offer p-2 ms-md-auto text-center mb-1 order-1"
+            *ngIf="value.offer > 0"
+          >
+            <h6 class="px-2">{{ value.offer }}% off Steal Deal</h6>
             <p class="m-0">Expires at midnight</p>
           </div>
           <div class="price-section">
             <div class="amount-details">
-              <span
-                ><s>&#8377;{{ value.price + 500 }}</s></span
+              <span *ngIf="value.offer > 0"
+                ><s>&#8377;{{ value.price }}</s></span
               >
-              <h4 class="d-inline-block mb-0">{{ value.price }}</h4>
-              <p class="m-0">+7363 Tax price</p>
+              <h4 class="d-inline-block mb-0">
+                {{ value.price - (value.price * value.offer) / 100 }}
+              </h4>
+              <p class="m-0">+357 Tax price</p>
             </div>
           </div>
           <button class="d-none d-md-inline-block btn btn-primary mt-2">
             Details
           </button>
-          <!-- <div>
-            <h6>location: {{ hotel?.address }}</h6>
-            <p class="text-start">Contact: {{ hotel?.contact_no }}</p>
-          </div> -->
-          <!-- <div class="available">
-            <span>From: {{ value.dates[0].start }}</span>
-            <br />
-            <span>To: {{ value.dates[0].end }}</span>
-          </div> -->
         </div>
       </div>
     </div>

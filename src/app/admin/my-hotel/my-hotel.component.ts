@@ -18,7 +18,7 @@ export class MyHotelComponent implements OnInit {
 
   ngOnInit(): void {
     let admin = localStorage.getItem('uid');
-    console.log(admin);
+    // console.log(admin);
     this.hotelService.getHotelByAdmin(admin).subscribe({
       next: (result: any) => {
         this.hotelArr = result;
@@ -29,12 +29,12 @@ export class MyHotelComponent implements OnInit {
   deleteHotel(id: any) {
     this.hotelService.deleteHotel(id).subscribe({
       next: (result: any) => {
-        console.log(result);
+        // console.log(result);
       },
     });
     this.hotelService.deleteAllRooms(id).subscribe({
       next: (result: any) => {
-        console.log(result);
+        // console.log(result);
       },
     });
     this.toastr.success('Hotel Deleted successfully', '', {
@@ -42,10 +42,6 @@ export class MyHotelComponent implements OnInit {
       progressBar: true,
       progressAnimation: 'decreasing',
     });
-    this.router.navigate(['/profile/myHotels']).then(() => {
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
-    });
+    this.ngOnInit();
   }
 }

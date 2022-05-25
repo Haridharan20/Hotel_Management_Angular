@@ -7,7 +7,6 @@ import { RoomCreationComponent } from './room-creation/room-creation.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyHotelComponent } from './my-hotel/my-hotel.component';
-import { MyRoomComponent } from './my-room/my-room.component';
 import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
 import { EditRoomComponent } from './edit-room/edit-room.component';
 
@@ -16,7 +15,6 @@ import { EditRoomComponent } from './edit-room/edit-room.component';
     HotelCreationComponent,
     RoomCreationComponent,
     MyHotelComponent,
-    MyRoomComponent,
     EditHotelComponent,
     EditRoomComponent,
   ],

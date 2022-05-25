@@ -52,6 +52,7 @@ export class AuthService {
     this.authToken = token;
     this.user = name;
     this.pic = image?.filename;
+    console.log('service', this.pic);
   }
 
   logout() {

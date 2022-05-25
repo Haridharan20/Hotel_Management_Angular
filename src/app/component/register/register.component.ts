@@ -50,12 +50,12 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     const { username, email, phonenumber, password } = this.registerForm.value;
-    console.log(this.registerForm.value);
+    // console.log(this.registerForm.value);
     this.userService
       .userRegister(username, email, password, phonenumber)
       .subscribe({
         next: (data) => {
-          console.log(data.msg);
+          // console.log(data.msg);
           this.toastr.success(data.msg, '', {
             timeOut: 2000,
             progressBar: true,
@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
           this.router.navigate(['/login']);
         },
         error: (err) => {
-          console.log(err.error.msg);
+          // console.log(err.error.msg);
           this.toastr.error(err.error.msg, '', {
             timeOut: 2000,
             progressBar: true,

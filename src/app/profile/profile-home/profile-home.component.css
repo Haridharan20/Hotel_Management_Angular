@@ -26,7 +26,10 @@ a {
 .right {
   border: 2px solid #374151;
 }
-
+.profile-pic img {
+  height: 150px;
+  width: 150px;
+}
 @media screen and (max-width: 991px) {
   .banner h1 {
     left: 5%;

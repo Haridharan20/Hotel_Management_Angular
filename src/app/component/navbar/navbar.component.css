@@ -5,7 +5,13 @@ p {
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  padding: 10px !important;
+  background-color: #374151;
+}
+
+.admin img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 nav {
   max-width: 100%;
@@ -17,9 +23,6 @@ nav {
 .user_dropdown {
   border-radius: 20px;
   background-color: #374151;
-}
-.admin {
-  background-color: #374151 !important;
 }
 a {
   color: white !important;

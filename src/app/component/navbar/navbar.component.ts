@@ -14,9 +14,13 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     if (!this.service.loggedIn()) {
       this.userName = localStorage.getItem('user') || '';
-      this.pic = localStorage.getItem('pic') || '';
+      if (localStorage.getItem('pic') == 'undefined') {
+        this.pic = null;
+      } else {
+        this.pic = localStorage.getItem('pic');
+      }
+      console.log(this.pic);
     }
-    console.log(this.service.isAdmin());
   }
 
   onLogout() {

@@ -24,11 +24,11 @@ export class BookingsComponent implements OnInit {
     console.log('init');
     this.userService.getProfile().subscribe({
       next: (result: any) => {
-        console.log(result);
+        // console.log(result);
         this.bookings = result.bookings.reverse();
       },
       error: (err: any) => {
-        console.log(err);
+        // console.log(err);
       },
     });
   }
@@ -53,13 +53,13 @@ export class BookingsComponent implements OnInit {
       .updateMyBooking({ bookingDate, roomId, userId, from, to })
       .subscribe({
         next: (result: any) => {
-          console.log(result);
+          // console.log(result);
         },
       });
 
     this.hotelService.cancelBooking(data).subscribe({
       next: (result: any) => {
-        console.log(result);
+        // console.log(result);
         this.toastr.success('Cancel successfully', '', {
           timeOut: 1000,
           progressBar: true,
@@ -68,12 +68,5 @@ export class BookingsComponent implements OnInit {
         this.ngOnInit();
       },
     });
-
-    // this.route.navigate(['/profile/booking']);
-    // this.route.navigate(['/profile/booking']).then(() => {
-    //   setTimeout(() => {
-    //     window.location.reload();
-    //   }, 1000);
-    // });
   }
 }

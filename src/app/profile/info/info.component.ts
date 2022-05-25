@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -16,7 +17,8 @@ export class InfoComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -57,7 +59,16 @@ export class InfoComponent implements OnInit {
       next: (result: any) => {
         console.log(result);
         event.target.elements[4].value = null;
-        this.ngOnInit();
+
+        this.toastr.success('Takes time to update everywhere', result.msg, {
+          timeOut: 2000,
+          progressBar: true,
+          progressAnimation: 'decreasing',
+        });
+
+        setTimeout(() => {
+          this.ngOnInit();
+        }, 2000);
       },
     });
   }

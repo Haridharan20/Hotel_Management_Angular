@@ -45,7 +45,7 @@ export class RoomDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.invokeStripe();
-    console.log(this.checkout);
+    // console.log(this.checkout);
     this.route.queryParams.subscribe((params) => {
       this.checkin = params['checkin'];
       this.checkout = params['checkOut'];
@@ -159,7 +159,7 @@ export class RoomDetailComponent implements OnInit {
       key: 'pk_test_51L2UI8SH6CJX8bgna0a8MjDxwFa7iIUjVLaRBKFWSYb9kXnlSd0d4Vam1vaT4BBZGwGj11sdrsSZlp9SVnrog1eM00u3SlutCL',
       locale: 'auto',
       token: function (stripeToken: any) {
-        console.log(stripeToken.card.name);
+        // console.log(stripeToken.card.name);
         payment(stripeToken.id, stripeToken.card.name);
       },
     });

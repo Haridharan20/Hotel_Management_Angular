@@ -4,9 +4,9 @@
     data-bs-toggle="modal"
     data-bs-target="#exampleModal"
   >
-    <div class="div first">
+    <div class="div">
       <img
-        src="https://a0.muscache.com/im/pictures/15d200af-2217-42e9-a332-804b84348606.jpg?im_w=960"
+        src="http://localhost:8000/{{ room.images[0] }}"
         class="img-fluid"
         alt=""
         width="100%"
@@ -15,7 +15,7 @@
     </div>
     <div class="div second">
       <img
-        src="https://a0.muscache.com/im/pictures/2f6366c7-4c75-4b0c-a701-ac5b407adc02.jpg?im_w=720"
+        src="https://a0.muscache.com/im/pictures/15d200af-2217-42e9-a332-804b84348606.jpg?im_w=960"
         width="100%"
         height="100%"
       />
@@ -45,7 +45,7 @@
   <div class="row">
     <div class="col-12 col-md-8 room-detail">
       <div class="detail p-4 mb-4">
-        <h3>Entire {{ room.roomtype }} suite hosted by {{ name }}</h3>
+        <h3>Entire {{ room.roomtype }} room hosted by {{ name }}</h3>
         <ul class="list-unstyled d-flex">
           <li class="text-muted">{{ room.capacity }} Guests · &nbsp;</li>
           <li class="text-muted">1 bedroom ·&nbsp;</li>
@@ -151,7 +151,9 @@
     </div>
     <div class="col-12 col-md-4 room-payment p-4 sticky-md-top">
       <div class="head d-flex justify-content-between">
-        <h4>&#x20B9;{{ room.price }}/night</h4>
+        <h4>
+          &#x20B9; {{ room.price - (room.price * room.offer) / 100 }}/night
+        </h4>
         <span>
           <i class="fa-solid fa-star text-warning"> </i>
           <span> 4.5(112) </span>
@@ -203,13 +205,14 @@
       <div class="summery mt-4 p-4">
         <div class="d-flex justify-content-between py-2">
           <h5>
-            {{ room.price }}
+            {{ room.price - (room.price * room.offer) / 100 }}
             {{ nights !== nights || nights == 0 ? "" : "x " + nights + "night"
             }}{{ nights > 1 ? "s" : "" }}
           </h5>
           <h5>
             &#x20B9;{{
-              room.price * (nights !== nights || nights == 0 ? 1 : nights)
+              (room.price - (room.price * room.offer) / 100) *
+                (nights !== nights || nights == 0 ? 1 : nights)
             }}
           </h5>
         </div>
@@ -222,21 +225,27 @@
 
           <h5>
             &#x20B9;{{
-              room.price * (nights !== nights || nights == 0 ? 1 : nights) + 357
+              (room.price - (room.price * room.offer) / 100) *
+                (nights !== nights || nights == 0 ? 1 : nights) +
+                357
             }}
           </h5>
         </div>
         <button
           class="btn btn-primary w-100"
-          (click)="bookRoom(room.roomtype, room.price, nights)"
+          (click)="
+            bookRoom(
+              room.roomtype,
+              room.price - (room.price * room.offer) / 100,
+              nights
+            )
+          "
         >
           Checkout
         </button>
       </div>
     </div>
   </div>
-
-  <!-- Modal -->
 
   <div class="modal fade" id="exampleModal" tabindex="-1">
     <div class="modal-dialog modal-fullscreen modal-lg">
@@ -255,7 +264,7 @@
               <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="false">
                   <img
-                    src="https://a0.muscache.com/im/pictures/15d200af-2217-42e9-a332-804b84348606.jpg?im_w=960"
+                    src="http://localhost:8000/{{ room.images[0] }}"
                     class="d-block w-100"
                   />
                 </div>

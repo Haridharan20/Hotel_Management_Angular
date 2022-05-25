@@ -28,7 +28,7 @@ export class WelcomeComponent implements OnInit {
     const { location } = this.searchForm.value;
     let city = location.toLowerCase();
     this.hotelService.getHotelByCity(city).subscribe((result: any) => {
-      console.log(result);
+      // console.log(result);
       this.filteredHotels = result;
       this.call();
     });
@@ -39,8 +39,6 @@ export class WelcomeComponent implements OnInit {
   }
 
   call() {
-    console.log('called');
-
     setTimeout(() => {
       this.viewEle?.nativeElement.scrollIntoView({
         behavior: 'smooth',

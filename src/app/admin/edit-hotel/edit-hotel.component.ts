@@ -19,10 +19,10 @@ export class EditHotelComponent implements OnInit {
   ) {
     this.route.params.subscribe((val) => {
       this.hotelId = val['id'];
-      console.log(this.hotelId);
+      // console.log(this.hotelId);
       this.hotelService.getHotelRooms(this.hotelId).subscribe({
         next: (result: any) => {
-          console.log(result);
+          // console.log(result);
           this.rooms = result;
         },
       });
@@ -32,15 +32,15 @@ export class EditHotelComponent implements OnInit {
   ngOnInit(): void {}
 
   deleteRoom(roomId: any) {
-    console.log(roomId);
+    // console.log(roomId);
     this.hotelService.deleteRoom(roomId).subscribe({
       next: (result: any) => {
-        console.log(result);
+        // console.log(result);
       },
     });
     this.hotelService.deleteRoomFromHotel(this.hotelId, roomId).subscribe({
       next: (result: any) => {
-        console.log(result);
+        // console.log(result);
       },
     });
     this.toastr.success('Room Deleted successfully', '', {

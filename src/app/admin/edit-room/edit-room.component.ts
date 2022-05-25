@@ -13,6 +13,7 @@ export class EditRoomComponent implements OnInit {
   roomType!: any;
   roomCapacity!: any;
   roomPrice!: any;
+  offer!: any;
   hotelId!: any;
 
   constructor(
@@ -26,13 +27,14 @@ export class EditRoomComponent implements OnInit {
     this.route.params.subscribe((val) => {
       this.roomId = val['id'];
     });
-    console.log(this.roomId);
+    // console.log(this.roomId);
     this.hotelService.getRoom(this.roomId).subscribe({
       next: (result: any) => {
         console.log(result);
         this.roomType = result.roomtype;
         this.roomCapacity = result.capacity;
         this.roomPrice = result.price;
+        this.offer = result.offer;
         this.hotelId = result.hotel_id;
       },
     });
@@ -42,10 +44,11 @@ export class EditRoomComponent implements OnInit {
       roomtype: this.roomType,
       capacity: this.roomCapacity,
       price: this.roomPrice,
+      offer: this.offer,
     };
     this.hotelService.updateRoom(this.roomId, data).subscribe({
       next: (result: any) => {
-        console.log(result);
+        // console.log(result);
         this.toastr.success('Room Update successfully', '', {
           timeOut: 1000,
           progressBar: true,

@@ -34,21 +34,20 @@ export class HotelDetailComponent implements OnInit {
     console.log(this.hotelId);
     this.hotelService.getHotelRooms(this.hotelId).subscribe({
       next: (result) => {
-        console.log(result);
+        // console.log(result);
         this.rooms = result;
       },
     });
 
     this.hotelService.getHotel(this.hotelId).subscribe({
       next: (result) => {
-        console.log('Hotel', result);
+        // console.log('Hotel', result);
         this.hotelDetails = result;
       },
     });
   }
 
   filterName(event: any) {
-    console.log('up');
     this.filterString = (<HTMLInputElement>event.target).value;
   }
 
@@ -95,7 +94,7 @@ export class HotelDetailComponent implements OnInit {
                 new Date(this.outDate).getTime()
               )
             ) {
-              console.log('overlapping');
+              // console.log('overlapping');
               flag = 0;
             }
           });

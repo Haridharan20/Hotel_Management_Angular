@@ -11,6 +11,7 @@ a {
 a.disabled {
   pointer-events: none;
   cursor: default;
+  -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
 }
 /* search */

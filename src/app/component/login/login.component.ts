@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     const { username, password } = this.loginForm.value;
     this.userService.userLogin(username, password).subscribe({
       next: (result: any) => {
-        console.log(result);
+        // console.log(result);
         this.userService.storeUserData(
           result.token,
           result.data.name,
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
           result.image,
           result.data.isAdmin
         );
-        console.log(result.msg);
+        // console.log(result.msg);
         this.toastr.success(result.msg, '', {
           timeOut: 2000,
           progressBar: true,
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
         }
       },
       error: (err: any) => {
-        console.log(err.error.msg);
+        // console.log(err.error.msg);
         this.toastr.error(err.error.msg, '', {
           timeOut: 2000,
           progressBar: true,

@@ -43,6 +43,10 @@ const routes: Routes = [
       import('./admin/admin.module').then((module) => module.AdminModule),
     canActivate: [AdminGuardGuard],
   },
+  {
+    path: '**',
+    component: WelcomeComponent,
+  },
 ];
 
 @NgModule({
